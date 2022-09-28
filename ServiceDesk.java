@@ -5,11 +5,23 @@
  * Object Classes.
  */
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ServiceDesk {
 
    Scanner sc = new Scanner(System.in);
+
+   // Array of Stock objects which holds the data for the
+   // MT Company's Stock Items.
+   private List<Staff> staffMembers;
+   // Array of Customer objects which holds the customer
+   // information for the MT Company.
+   private List<Technician> techs;
+   // Array of Customer objects which holds the customer
+   // information for the MT Company.
+   private List<Ticket> tickets;
+
 
    // Main method for the class StageD which allows the user to choose a menu item
    // or quit the program. It also initializes all variables/objects in the
