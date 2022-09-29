@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ public class Technician {
      // The techs level.
      private int level;
      // Assigned tickets.
-     private List<Ticket> tickets;
+     private List<Ticket> tickets = new ArrayList<>();
 
   
      // Contructor which is called when a new object is created by the user.

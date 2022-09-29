@@ -8,7 +8,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ServiceDesk {
 
@@ -85,6 +87,8 @@ public class ServiceDesk {
             System.out.println(
                   "Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
             String newPass = (sc.nextLine());
+
+            //TODO: Process Password creation rules
 
             HashMap<String, String> newCredentials = new HashMap<String, String>();
             newCredentials.put(newEmail, newPass); 
@@ -195,6 +199,8 @@ public class ServiceDesk {
             System.out.println("2 - Medium");
             System.out.println("3 - High");
             int severity = Integer.parseInt(sc.nextLine());
+            System.out.println("Ticket Created");
+            userContinue();
             Severity tempSeverity = Severity.LOW;
             int level = 1;
             if (severity == 1) {
@@ -208,17 +214,22 @@ public class ServiceDesk {
             Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
 
             tempTicket.setStatus(Status.OPEN);
-            
-            // TODO: Logic for ticket allocation
-
+                        
+            // (Greg Case & MultiplyByZer0, 2018)
+            Technician assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
             for (Technician tech : techs) {
                if (level == 1 && tech.getLevel() == 1) {
-
+                  if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
+                     assignedTechnician = tech;
+                  }
                } else if (level == 2 && tech.getLevel() == 2) {
-
+                  if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
+                     assignedTechnician = tech;
+                  }
                }
             }
 
+            tempTicket.setTechnician(assignedTechnician);
             tickets.add(tempTicket);
 
             break;

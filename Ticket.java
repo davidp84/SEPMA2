@@ -81,9 +81,9 @@ public class Ticket {
       String message;
       message = this.getClass().getSimpleName() + "\n";
       message += "Ticket ID - " + this.ticketID + "\n";
-      message += "Issue Description" + this.description + "\n";
-      message += "Issue Status" + this.status + "\n";
-      message += "Assigned Technician" + this.technician.getName();
+      message += "Issue Description - " + this.description + "\n";
+      message += "Issue Status - " + this.status + "\n";
+      message += "Assigned Technician - " + this.technician.getName();
       message += "\n";
       
       return message;
