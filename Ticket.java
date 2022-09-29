@@ -16,9 +16,11 @@ public class Ticket {
      private Technician technician;
      // Sets time and date of ticket creation
      private LocalDateTime dateTime;
+     // Staff member which submitted the ticket
+     private Staff staff;
 
      // Contructor which is called when a new object is created by the user.
-     public Ticket(String description, Severity severity)
+     public Ticket(String description, Severity severity, Staff staff)
      {
         this.description = description;
         this.severity = severity;
@@ -27,7 +29,12 @@ public class Ticket {
         // increments ID for next ticket
         this.IDTracker++;
         this.dateTime = dateTime.now();
+        this.staff = staff;
      }
+
+    public Staff getStaff() {
+      return staff;
+    }
 
     public LocalDateTime getDateTime() {
       return dateTime;
@@ -69,4 +76,16 @@ public class Ticket {
       this.status = status;
     }
 
+    public String toString() {
+      
+      String message;
+      message = this.getClass().getSimpleName() + "\n";
+      message += "Ticket ID - " + this.ticketID + "\n";
+      message += "Issue Description" + this.description + "\n";
+      message += "Issue Status" + this.status + "\n";
+      message += "Assigned Technician" + this.technician.getName();
+      message += "\n";
+      
+      return message;
+    }
 }

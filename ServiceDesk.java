@@ -5,11 +5,9 @@
  * Object Classes.
  */
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ServiceDesk {
@@ -78,12 +76,24 @@ public class ServiceDesk {
          // stock items is not reach, otherwise it displays a message to the user
          // advising them that the maximum has been reached.
          case 1:
-  
-            // TODO: Create Account 
-            break;
-         // Allows the user to add a new customer to the system provided that the
-         // maximum number of customers is not reach, otherwise it displays a
-         // message to the user advising them that the maximum has been reached.
+            System.out.println("Please Enter Your Email Address:");
+            String newEmail = (sc.nextLine());
+            System.out.println("Please Enter Your Full Name:");
+            String fullName = (sc.nextLine());
+            System.out.println("Please Enter Your Phone Number:");
+            int number = Integer.parseInt(sc.nextLine());
+            System.out.println(
+                  "Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
+            String newPass = (sc.nextLine());
+
+            HashMap<String, String> newCredentials = new HashMap<String, String>();
+            newCredentials.put(newEmail, newPass); 
+            Staff newStaff = new Staff(fullName, newCredentials, number); 
+            staffMembers.add(newStaff);
+            break;   
+         // Allows the user to enter in their credentials. Checks the credentails against
+         // those stored in the Staff and Tech's lists. If matched it displays the 
+         // relevant menu's
          case 2:
             System.out.println("Please Enter Your Email Address:");
             String email = (sc.nextLine());
@@ -93,11 +103,13 @@ public class ServiceDesk {
             boolean tech = false;
             String name = "";
             int option = -1;
+            Staff tempStaff = null;
 
             for (Staff staff : staffMembers) {
                if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
                   staffMember = true;
                   name = staff.getName();
+                  tempStaff = staff;
                }
             }
 
@@ -120,7 +132,7 @@ public class ServiceDesk {
                      System.out.println("Please enter a valid menu option!");
                   }
                   if (option != 0) {
-                     processStaffMenu(option);
+                     processStaffMenu(option, tempStaff);
                   } else if (option == 0) {
                      System.out.println("Bye!");
                   }
@@ -161,27 +173,64 @@ public class ServiceDesk {
       System.out.println("");
       System.out.println("Please select from the following menu items:");
       System.out.println("1 - Submit Ticket");
-      System.out.println("2 - Check Status of existing ticket");
+      System.out.println("2 - Check Status of existing tickets");
       System.out.println("0 - Logout");
    }
 
       // processMenu receives an int as a parameter from the user in the 'Staff'
    // method. Parameter is used as the menu selection path.
-   public void processStaffMenu(int choice) {
+   public void processStaffMenu(int choice, Staff tempStaff) {
       // switch is used to process the retrieved menu selection from the user by
       // calling the relevant methods.
       switch (choice) {
 
          case 0:
-
+            System.out.println("Bye!");
             break;
-
          case 1:
+            System.out.println("Please Enter Description of the IT Issue");
+            String issue = (sc.nextLine());
+            System.out.println("Please Select Issue Severity:");
+            System.out.println("1 - Low:");
+            System.out.println("2 - Medium");
+            System.out.println("3 - High");
+            int severity = Integer.parseInt(sc.nextLine());
+            Severity tempSeverity = Severity.LOW;
+            int level = 1;
+            if (severity == 1) {
+               tempSeverity = Severity.LOW;
+            } else if (severity == 2) {
+               tempSeverity = Severity.MEDIUM;
+            } else if (severity == 3) {
+               tempSeverity = Severity.HIGH;
+               level = 2;
+            } 
+            Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
+
+            tempTicket.setStatus(Status.OPEN);
+            
+            // TODO: Logic for ticket allocation
+
+            for (Technician tech : techs) {
+               if (level == 1 && tech.getLevel() == 1) {
+
+               } else if (level == 2 && tech.getLevel() == 2) {
+
+               }
+            }
+
+            tickets.add(tempTicket);
 
             break;
 
          case 2:
-
+            for (Ticket ticket : tickets) {
+               if(ticket.getStatus() == Status.OPEN && ticket.getStaff() == tempStaff) {
+                  System.out.println("");
+                  System.out.println("" + ticket.toString());
+                  System.out.println("");
+               }
+            }
             break;
          // default message displayed if invalid input received from user.
          default:
@@ -204,13 +253,13 @@ public class ServiceDesk {
 
    // processMenu receives an int as a parameter from the user in the 'Staff'
    // method. Parameter is used as the menu selection path.
-   public void processTechMenu(int choice) {
+   public void processTechMenu(int option) {
       // switch is used to process the retrieved menu selection from the user by
       // calling the relevant methods.
-      switch (choice) {
+      switch (option) {
 
          case 0:
-
+            System.out.println("Bye!");
             break;
 
          case 1:
