@@ -5,6 +5,8 @@
  * Object Classes.
  */
 
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +18,13 @@ public class ServiceDesk {
 
    // Array of Stock objects which holds the data for the
    // MT Company's Stock Items.
-   private List<Staff> staffMembers;
+   private List<Staff> staffMembers = new ArrayList<>();
    // Array of Customer objects which holds the customer
    // information for the MT Company.
-   private List<Technician> techs;
+   private List<Technician> techs = new ArrayList<>();
    // Array of Customer objects which holds the customer
    // information for the MT Company.
-   private List<Ticket> tickets;
+   private List<Ticket> tickets = new ArrayList<>();
 
 
    // Main method for the class StageD which allows the user to choose a menu item
@@ -76,13 +78,73 @@ public class ServiceDesk {
          // stock items is not reach, otherwise it displays a message to the user
          // advising them that the maximum has been reached.
          case 1:
+  
             // TODO: Create Account 
             break;
          // Allows the user to add a new customer to the system provided that the
          // maximum number of customers is not reach, otherwise it displays a
          // message to the user advising them that the maximum has been reached.
          case 2:
-            // TODO: Create Login Logic
+            System.out.println("Please Enter Your Email Address:");
+            String email = (sc.nextLine());
+            System.out.println("Please Enter Your Password:");
+            String pass = (sc.nextLine());
+            boolean staffMember = false;
+            boolean tech = false;
+            String name = "";
+            int option = -1;
+
+            for (Staff staff : staffMembers) {
+               if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
+                  staffMember = true;
+                  name = staff.getName();
+               }
+            }
+
+            for (Technician technicians : techs) {
+               if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
+                  tech = true;
+                  name = technicians.getName();
+               }
+            }
+
+            if (staffMember) {
+
+               do {
+                  displayStaffMenu(name);
+                  // try/catch block is used here to ensure the user enters a valid menu
+                  // option.
+                  try {
+                     option = Integer.parseInt(sc.nextLine());
+                  } catch (NumberFormatException e) {
+                     System.out.println("Please enter a valid menu option!");
+                  }
+                  if (option != 0) {
+                     processStaffMenu(option);
+                  } else if (option == 0) {
+                     System.out.println("Bye!");
+                  }
+               } while (option != 0);
+            } else if (tech) {
+               do {
+                  displayTechMenu(name);
+                  // try/catch block is used here to ensure the user enters a valid menu
+                  // option.
+                  try {
+                     option = Integer.parseInt(sc.nextLine());
+                  } catch (NumberFormatException e) {
+                     System.out.println("Please enter a valid menu option!");
+                  }
+                  if (option != 0) {
+                     processTechMenu(option);
+                  } else if (option == 0) {
+                     System.out.println("Bye!");
+                  }
+               } while (option != 0);
+
+            } else {
+               System.out.println("Invalid Input - Please try again");
+            }
             break;
          // default message displayed if invalid input received from user.
          default:
@@ -93,7 +155,10 @@ public class ServiceDesk {
 
    // displayMenu method simply displays the method in a neat
    // and easily interpreted way for the user.
-   public void displayStaffMenu() {
+   public void displayStaffMenu(String name) {
+      System.out.println("");
+      System.out.println("Hi " + name);
+      System.out.println("");
       System.out.println("Please select from the following menu items:");
       System.out.println("1 - Submit Ticket");
       System.out.println("2 - Check Status of existing ticket");
@@ -127,7 +192,10 @@ public class ServiceDesk {
 
    // displayMenu method simply displays the method in a neat
    // and easily interpreted way for the user.
-   public void displayTechMenu() {
+   public void displayTechMenu(String name) {
+      System.out.println("");
+      System.out.println("Hi " + name);
+      System.out.println("");
       System.out.println("Please select from the following menu items:");
       System.out.println("1 - View Open Tickets");
       System.out.println("2 - View All Tickets");
@@ -171,22 +239,22 @@ public class ServiceDesk {
       HashMap<String, String> map = new HashMap<String, String>();
       map.put("harry@tech.com", "Abc12345678901234567");
       Technician a = new Technician("Harry Styles", map, 1);
-      map.clear();
-      map.put("niall@tech.com","Abc45678901234567891");
-      Technician b = new Technician("Niall Horan", map, 1);
-      map.clear();
-      map.put("liam@tech.com","Abc78901234567891234");
-      Technician c = new Technician("Liam Payne", map, 1);
-      map.clear();
-      map.put("louis@tech.com","Def12345678901234567");
-      Technician d = new Technician("Louis Tomlinson", map, 2);
-      map.clear();
-      map.put("zayn@tech.com","Def4567890123456789");
-      Technician e = new Technician("Zayn Malik", map, 2);
       this.techs.add(a);
+      HashMap<String, String> map1 = new HashMap<String, String>();
+      map1.put("niall@tech.com","Abc45678901234567891");
+      Technician b = new Technician("Niall Horan", map1, 1);
       this.techs.add(b);
+      HashMap<String, String> map2 = new HashMap<String, String>();
+      map2.put("liam@tech.com","Abc78901234567891234");
+      Technician c = new Technician("Liam Payne", map2, 1);
       this.techs.add(c);
+      HashMap<String, String> map3 = new HashMap<String, String>();
+      map3.put("louis@tech.com","Def12345678901234567");
+      Technician d = new Technician("Louis Tomlinson", map3, 2);
       this.techs.add(d);
+      HashMap<String, String> map4 = new HashMap<String, String>();
+      map4.put("zayn@tech.com","Def4567890123456789");
+      Technician e = new Technician("Zayn Malik", map4, 2);
       this.techs.add(e);
    }
 
