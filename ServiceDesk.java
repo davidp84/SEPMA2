@@ -7,6 +7,7 @@
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ServiceDesk {
@@ -167,16 +168,26 @@ public class ServiceDesk {
    }
 
    public void populateTechs() {
-      Technician a = new Technician("Harry Styles", HashMap<String, String>().put("harry@tech.com", "Abc12345678901234567"), 1);
-      Technician b = new Technician("Niall Horan", HashMap<"niall@tech.com","Abc45678901234567891">(), 1);
-      Technician c = new Technician("Liam Payne", (new HashMap<"liam@tech.com","Abc78901234567891234">()), 1);
-      Technician d = new Technician("Louis Tomlinson", (new HashMap<"louis@tech.com","Def12345678901234567">), 2);
-      Technician e = new Technician("Zayn Malik", (new HashMap<"zayn@tech.com","Def4567890123456789">()), 2);
-      this.techs.put(a);
-      this.techs.put(b);
-      this.techs.put(c);
-      this.techs.put(d);
-      this.techs.put(e);
+      HashMap<String, String> map = new HashMap<String, String>();
+      map.put("harry@tech.com", "Abc12345678901234567");
+      Technician a = new Technician("Harry Styles", map, 1);
+      map.clear();
+      map.put("niall@tech.com","Abc45678901234567891");
+      Technician b = new Technician("Niall Horan", map, 1);
+      map.clear();
+      map.put("liam@tech.com","Abc78901234567891234");
+      Technician c = new Technician("Liam Payne", map, 1);
+      map.clear();
+      map.put("louis@tech.com","Def12345678901234567");
+      Technician d = new Technician("Louis Tomlinson", map, 2);
+      map.clear();
+      map.put("zayn@tech.com","Def4567890123456789");
+      Technician e = new Technician("Zayn Malik", map, 2);
+      this.techs.add(a);
+      this.techs.add(b);
+      this.techs.add(c);
+      this.techs.add(d);
+      this.techs.add(e);
    }
 
    public static void main(String[] args) {
