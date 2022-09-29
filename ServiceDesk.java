@@ -5,6 +5,7 @@
  * Object Classes.
  */
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,6 +28,9 @@ public class ServiceDesk {
    // or quit the program. It also initializes all variables/objects in the
    // Main Class. The class also loads from a text file if one is available.
    public ServiceDesk() {
+
+      // Generate hardcoded Technicians
+      populateTechs();
 
       // local variable to hold user's menu selection. Initialised to -1
       // to prevent accidental menu option by the program.
@@ -160,6 +164,19 @@ public class ServiceDesk {
       System.out.println("");
       System.out.println("Press Enter to continue");
       sc.nextLine();
+   }
+
+   public void populateTechs() {
+      Technician a = new Technician("Harry Styles", HashMap<String, String>().put("harry@tech.com", "Abc12345678901234567"), 1);
+      Technician b = new Technician("Niall Horan", HashMap<"niall@tech.com","Abc45678901234567891">(), 1);
+      Technician c = new Technician("Liam Payne", (new HashMap<"liam@tech.com","Abc78901234567891234">()), 1);
+      Technician d = new Technician("Louis Tomlinson", (new HashMap<"louis@tech.com","Def12345678901234567">), 2);
+      Technician e = new Technician("Zayn Malik", (new HashMap<"zayn@tech.com","Def4567890123456789">()), 2);
+      this.techs.put(a);
+      this.techs.put(b);
+      this.techs.put(c);
+      this.techs.put(d);
+      this.techs.put(e);
    }
 
    public static void main(String[] args) {
