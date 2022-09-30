@@ -245,6 +245,7 @@ public class ServiceDesk {
 
             tempTicket.setTechnician(assignedTechnician);
             tickets.add(tempTicket);
+            assignedTechnician.addTickets(tempTicket);
 
             break;
 
@@ -257,6 +258,7 @@ public class ServiceDesk {
                   System.out.println("");
                }
             }
+            userContinue();
             break;
          // default message displayed if invalid input received from user.
          default:
