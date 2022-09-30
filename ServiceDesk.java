@@ -99,6 +99,7 @@ public class ServiceDesk {
          // those stored in the Staff and Tech's lists. If matched it displays the 
          // relevant menu's
          case 2:
+            // TODO: Implement lost password feature
             System.out.println("Please Enter Your Email Address:");
             String email = (sc.nextLine());
             System.out.println("Please Enter Your Password:");
@@ -109,6 +110,9 @@ public class ServiceDesk {
             int option = -1;
             Staff tempStaff = null;
 
+            // Iterates through staff members to math credentials entered. If matched, 
+            // staffMember boolean is set to true to indicate Staff login and not tech login. 
+            // Staff is saved in a local variable for use below.
             for (Staff staff : staffMembers) {
                if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
                   staffMember = true;
@@ -117,6 +121,8 @@ public class ServiceDesk {
                }
             }
 
+            // Iterates through technicians to math credentials entered. If matched, 
+            // tech boolean is set to true to indicate tech login and not staff member login. 
             for (Technician technicians : techs) {
                if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
                   tech = true;
@@ -124,8 +130,8 @@ public class ServiceDesk {
                }
             }
 
+            // Displays relevant menu depending on whether staff member or technician has logged in.
             if (staffMember) {
-
                do {
                   displayStaffMenu(name);
                   // try/catch block is used here to ensure the user enters a valid menu
@@ -157,7 +163,6 @@ public class ServiceDesk {
                      System.out.println("Bye!");
                   }
                } while (option != 0);
-
             } else {
                System.out.println("Invalid Input - Please try again");
             }
@@ -169,7 +174,7 @@ public class ServiceDesk {
 
    }
 
-   // displayMenu method simply displays the method in a neat
+   // displayStaffMenu method simply displays the method in a neat
    // and easily interpreted way for the user.
    public void displayStaffMenu(String name) {
       System.out.println("");
@@ -181,8 +186,9 @@ public class ServiceDesk {
       System.out.println("0 - Logout");
    }
 
-      // processMenu receives an int as a parameter from the user in the 'Staff'
-   // method. Parameter is used as the menu selection path.
+   // processMenu receives an int as a parameter from the user in the 'Staff'
+   // method. Parameter is used as the menu selection path. Staff member is also 
+   // passed to allow specific information to be retrieved for the logged in staff.
    public void processStaffMenu(int choice, Staff tempStaff) {
       // switch is used to process the retrieved menu selection from the user by
       // calling the relevant methods.
@@ -214,9 +220,17 @@ public class ServiceDesk {
             Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
 
             tempTicket.setStatus(Status.OPEN);
-                        
+                  
             // (Greg Case & MultiplyByZer0, 2018)
+            // Randomly assigns a technician to a temporary technician variable. It then iterates over each 
+            // technician and changes technician to the one with the lowest assigned tickets. 
             Technician assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
+
+            // While loop to make sure that randomly selected technician is the same level of the ticket.
+            while (level == 2 && assignedTechnician.getLevel() == 1) {
+               assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
+            }
+
             for (Technician tech : techs) {
                if (level == 1 && tech.getLevel() == 1) {
                   if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
@@ -235,6 +249,7 @@ public class ServiceDesk {
             break;
 
          case 2:
+            // Displays a print out of the logged in staff members open tickets.
             for (Ticket ticket : tickets) {
                if(ticket.getStatus() == Status.OPEN && ticket.getStaff() == tempStaff) {
                   System.out.println("");
