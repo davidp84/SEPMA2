@@ -10,7 +10,7 @@ public class Staff {
    // The staff members phone number.
    private int staffContactNo;
 
-   // Contructor which is called when a new object is created by the user.
+   // Constructor which is called when a new object is created by the user.
    public Staff(String name, HashMap<String, String> login, int staffContactNo)
    {
       this.name = name;

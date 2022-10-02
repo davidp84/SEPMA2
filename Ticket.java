@@ -19,16 +19,16 @@ public class Ticket {
      // Staff member which submitted the ticket
      private Staff staff;
 
-     // Contructor which is called when a new object is created by the user.
+     // Constructor which is called when a new object is created by the user.
      public Ticket(String description, Severity severity, Staff staff)
      {
         this.description = description;
         this.severity = severity;
         this.status = Status.OPEN;
-        this.ticketID = this.IDTracker;
+        this.ticketID = Ticket.IDTracker;
         // increments ID for next ticket
-        this.IDTracker++;
-        this.dateTime = dateTime.now();
+        Ticket.IDTracker++;
+        this.dateTime = LocalDateTime.now();
         this.staff = staff;
      }
 

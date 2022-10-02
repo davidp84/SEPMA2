@@ -15,7 +15,7 @@ public class Technician {
      private List<Ticket> tickets = new ArrayList<>();
 
   
-     // Contructor which is called when a new object is created by the user.
+     // Constructor which is called when a new object is created by the user.
      public Technician(String name, HashMap<String, String> login, int level)
      {
         this.name = name;
