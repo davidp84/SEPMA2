@@ -56,7 +56,7 @@ public class Engine {
 		System.out.println("Please select from the following menu items:");
 		System.out.println("1 - Set up account");
 		System.out.println("2 - Log In");
-		System.out.println("3 - Exit");
+		System.out.println("0 - Exit");
 	}
 
 	// displayStaffMenu method simply displays the method in a neat

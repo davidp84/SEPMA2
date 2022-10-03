@@ -103,37 +103,43 @@ public class ServiceDesk {
 			String email = (sc.nextLine());
 			System.out.println("Please Enter Your Password:");
 			String pass = (sc.nextLine());
-			boolean staffMember = false;
+         boolean staffMember = false;
 			boolean tech = false;
+         System.out.println("Please Enter '1' for Staff Log In or '2' for Technician Log In:");
+			int type = Integer.parseInt(sc.nextLine());
 			String name = "";
 			int option = -1;
 			Staff tempStaff = null;
 
-			// Iterates through staff members to math credentials entered. If matched,
+			// Iterates through staff members to match credentials entered. If matched,
 			// staffMember boolean is set to true to indicate Staff login and not tech
 			// login.
 			// Staff is saved in a local variable for use below.
-			for (Staff staff : staffMembers) {
-				if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
-					staffMember = true;
-					name = staff.getName();
-					tempStaff = staff;
-				}
-			}
+            if (type == 1) {
+               for (Staff staff : staffMembers) {
+                  if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
+                     name = staff.getName();
+                     staffMember = true;
+                     tempStaff = staff;
+                  }
+               }
+            }
 
-			// Iterates through technicians to math credentials entered. If matched,
+			// Iterates through technicians to match credentials entered. If matched,
 			// tech boolean is set to true to indicate tech login and not staff member
 			// login.
-			for (Technician technicians : techs) {
-				if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
-					tech = true;
-					name = technicians.getName();
-				}
-			}
+            if (type == 2) {
+               for (Technician technicians : techs) {
+                  if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
+                     tech = true;
+                     name = technicians.getName();
+                  }
+               }
+            }
 
 			// Displays relevant menu depending on whether staff member or technician has
 			// logged in.
-			if (staffMember) {
+			if (staffMember && type == 1) {
 				do {
 					engine.displayStaffMenu(name);
 					// try/catch block is used here to ensure the user enters a valid menu
@@ -149,7 +155,7 @@ public class ServiceDesk {
 						System.out.println("Bye!");
 					}
 				} while (option != 0);
-			} else if (tech) {
+			} else if (tech && type == 2) {
 				do {
 					engine.displayTechMenu(name);
 					// try/catch block is used here to ensure the user enters a valid menu
