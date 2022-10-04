@@ -78,7 +78,8 @@ public class ServiceDesk {
 			System.out.println("Please Enter Your Phone Number:");
 			int number = Integer.parseInt(sc.nextLine());
 			System.out.println(
-					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
+					// changed to min len 5 for ease of testing temporarily
+					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 5.):");
 			String newPass = (sc.nextLine());
 
 			if (engine.PasswordIsValid(newPass)) {
@@ -103,9 +104,11 @@ public class ServiceDesk {
 			String email = (sc.nextLine());
 			System.out.println("Please Enter Your Password:");
 			String pass = (sc.nextLine());
-         boolean staffMember = false;
+			boolean staffMember = false;
 			boolean tech = false;
-         System.out.println("Please Enter '1' for Staff Log In or '2' for Technician Log In:");
+			System.out.println("Please select from the following menu items:");
+			System.out.println("1 - Staff Login");
+			System.out.println("2 - Technician Login");
 			int type = Integer.parseInt(sc.nextLine());
 			String name = "";
 			int option = -1;
@@ -115,27 +118,27 @@ public class ServiceDesk {
 			// staffMember boolean is set to true to indicate Staff login and not tech
 			// login.
 			// Staff is saved in a local variable for use below.
-            if (type == 1) {
-               for (Staff staff : staffMembers) {
-                  if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
-                     name = staff.getName();
-                     staffMember = true;
-                     tempStaff = staff;
-                  }
-               }
-            }
+			if (type == 1) {
+				for (Staff staff : staffMembers) {
+					if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
+						name = staff.getName();
+						staffMember = true;
+						tempStaff = staff;
+					}
+				}
+			}
 
 			// Iterates through technicians to match credentials entered. If matched,
 			// tech boolean is set to true to indicate tech login and not staff member
 			// login.
-            if (type == 2) {
-               for (Technician technicians : techs) {
-                  if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
-                     tech = true;
-                     name = technicians.getName();
-                  }
-               }
-            }
+			if (type == 2) {
+				for (Technician technicians : techs) {
+					if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
+						tech = true;
+						name = technicians.getName();
+					}
+				}
+			}
 
 			// Displays relevant menu depending on whether staff member or technician has
 			// logged in.
@@ -265,6 +268,48 @@ public class ServiceDesk {
 		}
 
 	}
+	public void chooseTicketStatus() {
+		System.out.println("Please enter a ticket status to edit");
+		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
+		int i = 0;
+		int elementInList=-1;
+		boolean ticketExists = false;
+		while (i < tickets.size()) {
+			if (tickets.get(i).getTicketID() == ticketToEditStatus) {
+				ticketExists = true;
+				elementInList=i;
+			}
+			i++;
+		}
+		if (ticketExists == true) {
+			System.out.println("Please select from the following status items:");
+			System.out.println("1 - Open");
+			System.out.println("2 - Resolved");
+			System.out.println("3 - Unresolved");
+			System.out.println("4 - Archived");
+			int chosenStatus = Integer.parseInt(sc.nextLine());
+			changeTicketStatus(chosenStatus, elementInList);
+			
+		} else {
+			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
+		}
+	}
+	
+	public void changeTicketStatus(int status, int elementInList){
+		
+		if(status==1) {
+			tickets.get(elementInList).setStatus(Status.OPEN);
+		}else if(status==2) {
+			tickets.get(elementInList).setStatus(Status.RESOLVED);
+		}else if(status==3) {
+			tickets.get(elementInList).setStatus(Status.UNRESOLVED);
+		}else if(status==4) {
+			tickets.get(elementInList).setStatus(Status.ARCHIVED);
+		}else {
+			System.out.println(status+" is not an option, status change failed");
+		}
+		System.out.println("Status of ticket: "+tickets.get(elementInList).getTicketID() +" is now status "+ tickets.get(elementInList).getStatus());
+	}
 
 	// processMenu receives an int as a parameter from the user in the 'Staff'
 	// method. Parameter is used as the menu selection path.
@@ -283,6 +328,10 @@ public class ServiceDesk {
 
 		case 2:
 
+			break;
+
+		case 3:
+			chooseTicketStatus();
 			break;
 		// default message displayed if invalid input received from user.
 		default:

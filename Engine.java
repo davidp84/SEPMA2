@@ -6,15 +6,15 @@ public class Engine {
 
 	// checks if password meets requirements
 	public boolean PasswordIsValid(String password) {
-
-		if (password.length() < 20)
+		//changed to requirements for password for ease of testing, can be changed back for submission
+		if (password.length() < 5)
 			return false;
 
-		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
-				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
-
-		if (!password.matches(pattern))
-			return false;
+//		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
+//				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+//
+//		if (!password.matches(pattern))
+//			return false;
 
 		return true;
 	}
@@ -80,6 +80,7 @@ public class Engine {
 		System.out.println("Please select from the following menu items:");
 		System.out.println("1 - View Open Tickets");
 		System.out.println("2 - View All Tickets");
+		System.out.println("3 - Edit Ticket Status");
 		System.out.println("0 - Logout");
 	}
 
