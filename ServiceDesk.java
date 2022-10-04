@@ -268,19 +268,25 @@ public class ServiceDesk {
 		}
 
 	}
+
 	public void chooseTicketStatus() {
+		//get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
 		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
+		//counter to track through array list looking for valid ticket ID
 		int i = 0;
-		int elementInList=-1;
+		//originally the element of the ticket searched is -1 which is out of bounds. If element is found then we
+		//store the element number here, this is used later to change the correct tickets status
+		int elementInList = -1;
 		boolean ticketExists = false;
 		while (i < tickets.size()) {
 			if (tickets.get(i).getTicketID() == ticketToEditStatus) {
 				ticketExists = true;
-				elementInList=i;
+				elementInList = i;
 			}
 			i++;
 		}
+		//if ticket is found we ask the tech what status they want to change the ticket to
 		if (ticketExists == true) {
 			System.out.println("Please select from the following status items:");
 			System.out.println("1 - Open");
@@ -290,25 +296,28 @@ public class ServiceDesk {
 			int chosenStatus = Integer.parseInt(sc.nextLine());
 			changeTicketStatus(chosenStatus, elementInList);
 			
-		} else {
+		}//if ticket is not found then error message 
+		else {
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
 		}
 	}
-	
-	public void changeTicketStatus(int status, int elementInList){
-		
-		if(status==1) {
+	//ticket status changed on correct element in arraylist
+	public void changeTicketStatus(int status, int elementInList) {
+
+		if (status == 1) {
 			tickets.get(elementInList).setStatus(Status.OPEN);
-		}else if(status==2) {
+		} else if (status == 2) {
 			tickets.get(elementInList).setStatus(Status.RESOLVED);
-		}else if(status==3) {
+		} else if (status == 3) {
 			tickets.get(elementInList).setStatus(Status.UNRESOLVED);
-		}else if(status==4) {
+		} else if (status == 4) {
 			tickets.get(elementInList).setStatus(Status.ARCHIVED);
-		}else {
-			System.out.println(status+" is not an option, status change failed");
+		} else {
+			System.out.println(status + " is not an option, status change failed");
 		}
-		System.out.println("Status of ticket: "+tickets.get(elementInList).getTicketID() +" is now status "+ tickets.get(elementInList).getStatus());
+		//Confirmation message of the changes
+		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
+				+ tickets.get(elementInList).getStatus());
 	}
 
 	// processMenu receives an int as a parameter from the user in the 'Staff'
@@ -331,6 +340,7 @@ public class ServiceDesk {
 			break;
 
 		case 3:
+			//technician can change status of tickets
 			chooseTicketStatus();
 			break;
 		// default message displayed if invalid input received from user.
