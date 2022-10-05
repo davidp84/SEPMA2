@@ -47,6 +47,48 @@ public class Engine {
 		techs.add(e);
 	}
 
+	// Checks if the password is valid and creates a new profile if it is.
+	// If it is not, it gives feedback to the user.
+	public void createProfile(String newPass, String newEmail, String fullName, int number, List<Staff> staffMembers) {
+		
+		if (PasswordIsValid(newPass)) {
+
+			HashMap<String, String> newCredentials = new HashMap<String, String>();
+			newCredentials.put(newEmail, newPass);
+			Staff newStaff = new Staff(fullName, newCredentials, number);
+			staffMembers.add(newStaff);
+
+			System.out.println("\nProfile succesfully created.\n");
+
+		} else {
+			System.out.println("\nInvalid password. Unable to create profile.\n");
+		}
+	}
+	
+	// Iterates through staff members to match credentials entered. 
+	public Staff retrieveStaff(List<Staff> staffMembers, String email, String pass) {
+		
+		Staff temp = null;		
+		for (Staff staff : staffMembers) {
+			if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
+				temp = staff;
+			}
+		}
+		return temp;
+	}
+	
+	// Iterates through technicians to match credentials entered. 
+	public Technician retrieveTech(List<Technician> techs, String email, String pass) {
+		
+		Technician temp = null;		
+		for (Technician technician : techs) {
+			if (technician.getLogin().containsKey(email) && technician.getLogin().containsValue(pass)) {
+				temp = technician;
+			}
+		}
+		return temp;
+	}
+
 	// MENUs - UI //
 
 	// displays menu

@@ -6,7 +6,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -81,24 +80,13 @@ public class ServiceDesk {
 					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
 			String newPass = (sc.nextLine());
 
-			if (engine.PasswordIsValid(newPass)) {
+			engine.createProfile(newPass, newEmail, fullName, number, staffMembers);
 
-				HashMap<String, String> newCredentials = new HashMap<String, String>();
-				newCredentials.put(newEmail, newPass);
-				Staff newStaff = new Staff(fullName, newCredentials, number);
-				staffMembers.add(newStaff);
-
-				System.out.println("\nProfile succesfully created.\n");
-
-			} else {
-				System.out.println("\nInvalid password. Unable to create profile.\n");
-			}
 			break;
 		// Allows the user to enter in their credentials. Checks the credentials against
 		// those stored in the Staff and Tech's lists. If matched it displays the
 		// relevant menu's
 		case 2:
-			// TODO: Implement lost password feature
 			System.out.println("Please Enter Your Email Address:");
 			String email = (sc.nextLine());
 			System.out.println("Please Enter Your Password:");
@@ -111,31 +99,25 @@ public class ServiceDesk {
 			int type = Integer.parseInt(sc.nextLine());
 			String name = "";
 			int option = -1;
-			Staff tempStaff = null;
-
-			// Iterates through staff members to match credentials entered. If matched,
-			// staffMember boolean is set to true to indicate Staff login and not tech
-			// login.
+			// Iterates through staff members to match credentials entered.
+			Staff tempStaff = engine.retrieveStaff(staffMembers, email, pass);
+			// If matched, staffMember boolean is set to true to indicate Staff login
+			// and not tech login.
 			// Staff is saved in a local variable for use below.
 			if (type == 1) {
-				for (Staff staff : staffMembers) {
-					if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
-						name = staff.getName();
-						staffMember = true;
-						tempStaff = staff;
-					}
+				if (tempStaff != null) {
+					name = tempStaff.getName();
+					staffMember = true;
 				}
 			}
-
 			// Iterates through technicians to match credentials entered. If matched,
 			// tech boolean is set to true to indicate tech login and not staff member
 			// login.
 			if (type == 2) {
-				for (Technician technicians : techs) {
-					if (technicians.getLogin().containsKey(email) && technicians.getLogin().containsValue(pass)) {
-						tech = true;
-						name = technicians.getName();
-					}
+				Technician tempTech = engine.retrieveTech(techs, email, pass);
+				if (tempTech != null) {
+					tech = true;
+					name = tempTech.getName();
 				}
 			}
 
@@ -177,8 +159,9 @@ public class ServiceDesk {
 				System.out.println("Invalid Input - Please try again");
 			}
 			break;
-		// Forgotten password function. It allows users to change password by entering their 
-		// email and phone number.	
+		// Forgotten password function. It allows users to change password by entering
+		// their
+		// email and phone number.
 		case 3:
 			System.out.println("Have you forgotten your password? (y/n)");
 			String input = "a";
@@ -186,6 +169,7 @@ public class ServiceDesk {
 				input = sc.nextLine();
 				if (input.equalsIgnoreCase("y")) {
 					System.out.println("Reset password function launched");
+					// TODO engine.resetPassword();
 				} else if (input.equalsIgnoreCase("n")) {
 					System.out.println("Back to main menu.");
 				} else {
@@ -285,13 +269,15 @@ public class ServiceDesk {
 	}
 
 	public void chooseTicketStatus() {
-		//get input of ticket to change
+		// get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
 		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
-		//counter to track through array list looking for valid ticket ID
+		// counter to track through array list looking for valid ticket ID
 		int i = 0;
-		//originally the element of the ticket searched is -1 which is out of bounds. If element is found then we
-		//store the element number here, this is used later to change the correct tickets status
+		// originally the element of the ticket searched is -1 which is out of bounds.
+		// If element is found then we
+		// store the element number here, this is used later to change the correct
+		// tickets status
 		int elementInList = -1;
 		boolean ticketExists = false;
 		while (i < tickets.size()) {
@@ -301,7 +287,8 @@ public class ServiceDesk {
 			}
 			i++;
 		}
-		//if ticket is found we ask the tech what status they want to change the ticket to
+		// if ticket is found we ask the tech what status they want to change the ticket
+		// to
 		if (ticketExists == true) {
 			System.out.println("Please select from the following status items:");
 			System.out.println("1 - Open");
@@ -310,13 +297,14 @@ public class ServiceDesk {
 			System.out.println("4 - Archived");
 			int chosenStatus = Integer.parseInt(sc.nextLine());
 			changeTicketStatus(chosenStatus, elementInList);
-			
-		}//if ticket is not found then error message 
+
+		} // if ticket is not found then error message
 		else {
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
 		}
 	}
-	//ticket status changed on correct element in arraylist
+
+	// ticket status changed on correct element in arraylist
 	public void changeTicketStatus(int status, int elementInList) {
 
 		if (status == 1) {
@@ -330,7 +318,7 @@ public class ServiceDesk {
 		} else {
 			System.out.println(status + " is not an option, status change failed");
 		}
-		//Confirmation message of the changes
+		// Confirmation message of the changes
 		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
 				+ tickets.get(elementInList).getStatus());
 	}
@@ -355,7 +343,7 @@ public class ServiceDesk {
 			break;
 
 		case 3:
-			//technician can change status of tickets
+			// technician can change status of tickets
 			chooseTicketStatus();
 			break;
 		// default message displayed if invalid input received from user.
