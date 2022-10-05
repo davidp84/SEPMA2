@@ -6,15 +6,14 @@ public class Engine {
 
 	// checks if password meets requirements
 	public boolean PasswordIsValid(String password) {
-		//changed to requirements for password for ease of testing, can be changed back for submission
-		if (password.length() < 5)
+		if (password.length() < 20)
 			return false;
 
-//		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
-//				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
-//
-//		if (!password.matches(pattern))
-//			return false;
+		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
+				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+
+		if (!password.matches(pattern))
+			return false;
 
 		return true;
 	}
@@ -47,8 +46,7 @@ public class Engine {
 		Technician e = new Technician("Zayn Malik", map4, 2);
 		techs.add(e);
 	}
-	
-	
+
 	// MENUs - UI //
 
 	// displays menu
@@ -56,6 +54,7 @@ public class Engine {
 		System.out.println("Please select from the following menu items:");
 		System.out.println("1 - Set up account");
 		System.out.println("2 - Log In");
+		System.out.println("3 - Reset Password");
 		System.out.println("0 - Exit");
 	}
 
@@ -91,5 +90,5 @@ public class Engine {
 		System.out.println("Press Enter to continue");
 		sc.nextLine();
 	}
-	
+
 }

@@ -50,7 +50,7 @@ public class ServiceDesk {
 			} catch (NumberFormatException e) {
 				System.out.println("Please enter a valid menu option!");
 			}
-			if (choice != 0) {
+			if (choice != 0 && choice <= 3) {
 				processBasicMenu(choice);
 			} else if (choice == 0) {
 				System.out.println("Bye!");
@@ -78,8 +78,7 @@ public class ServiceDesk {
 			System.out.println("Please Enter Your Phone Number:");
 			int number = Integer.parseInt(sc.nextLine());
 			System.out.println(
-					// changed to min len 5 for ease of testing temporarily
-					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 5.):");
+					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
 			String newPass = (sc.nextLine());
 
 			if (engine.PasswordIsValid(newPass)) {
@@ -176,6 +175,22 @@ public class ServiceDesk {
 				} while (option != 0);
 			} else {
 				System.out.println("Invalid Input - Please try again");
+			}
+			break;
+		// Forgotten password function. It allows users to change password by entering their 
+		// email and phone number.	
+		case 3:
+			System.out.println("Have you forgotten your password? (y/n)");
+			String input = "a";
+			while (!(input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n"))) {
+				input = sc.nextLine();
+				if (input.equalsIgnoreCase("y")) {
+					System.out.println("Reset password function launched");
+				} else if (input.equalsIgnoreCase("n")) {
+					System.out.println("Back to main menu.");
+				} else {
+					System.out.println("Invalid input. Must be y/n. Try again.");
+				}
 			}
 			break;
 		// default message displayed if invalid input received from user.
