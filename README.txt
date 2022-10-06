@@ -13,17 +13,30 @@ You can download and install Eclipse IDE from this link: https://www.eclipse.org
  1. Loading and running the program
 
 Launch Eclipse IDE and select the project directory in the workspace prompt. Once you found and selected the project folder, click on 'Launch'.
-In the Package Explorer, select the SEPMA2 folder and double click on the default package. In there, you will find the ServiceDesk.java file. Open the file and click on Run. Eclipse will open a Terminal and run the program in it.
+In the Package Explorer, inside the SEPMA2 folder double click on the default package. In there, you will find the ServiceDesk.java file. Open the file and click on Run. Eclipse will open a Terminal and run the program in it.
 
  2. Main Menu
 
- 	2.1 Set up a new profile
+In your terminal, the running program will display four menu options:
 
- 	2.2 Log in
+ 1 - Set up account
+ 2 - Log In
+ 3 - Reset Password
+ 0 - Exit
 
-	2.3 Reset Password
+To select one of the options above, type the corresponding menu number in the console and press enter. 
 
-	2.4 Quit program
+ 2.1 Set up a new profile
+
+This options will open when selecting 1 in the main menu prompt.
+Here, the program will ask you to give four inputs: email address, full name, phone number and password. The password you insert must be a mix of uppercase and lowercase alphanumeric characters of min length 20.
+If all fields are valid, a new profile is created, otherwise an 'invalid' message will appear. In both cases, you will be redirected to the main menu.
+
+ 2.2 Log in
+
+ 2.3 Reset Password
+
+ 2.4 Quit program
 
  3. Technician menu 
 
