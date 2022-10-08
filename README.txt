@@ -28,15 +28,15 @@ To select one of the options above, type the corresponding menu number in the co
 
  2.1 Set up a new profile
 
-This options will open when selecting '1' in the main menu prompt.
+This option will open when selecting '1' in the main menu prompt.
 Here, the program will ask you to give four inputs: email address, full name, phone number and password. The password you insert must be a mix of uppercase and lowercase alphanumeric characters of min length 20.
 If all fields are valid, a new profile is created, otherwise an 'invalid' message will appear. In both cases, you will be redirected to the main menu.
 
  2.2 Log in
 
-This options will open when selecting '2' in the main menu prompt.
+This option will open when selecting '2' in the main menu prompt.
 Here, the program will ask you to give two inputs: email address and password. It will then prompt you to select either '1' for staff login or '2' for the technicians login. Each login will take you to the respective menu. 
-If all fields are valid and the credentials match those on file you will be redirected to the menu which was seleccted.
+If all fields are valid and the credentials match those on file you will be redirected to the menu which was selected.
 
 A technician may log in with their credentials:
 
@@ -49,7 +49,8 @@ zayn@tech.com     |     Def45678901234567890
 
  2.3 Reset Password
 
-Reseting your password will prompt you to enter 'y' if you have forgotten your password, or 'n' if you have not forgotten your password and perhaps accidentally entered in to the reset password menu option.
+This option will open when selecting '3' in the main menu prompt.
+Resetting your password will prompt you to enter 'y' if you have forgotten your password, or 'n' if you have not forgotten your password and perhaps accidentally entered in to the reset password menu option.
 User's are currently not able to reset their password, this feature will be added shortly.
 
  2.4 Quit program
@@ -58,6 +59,7 @@ Selecting '0' in the main menu will close the program.
 
  3. Technician menu 
 
+After logging in (2.2), you will be able to select the option '2 - Technician Login' to access the Technician Menu feature.
 In your terminal, the running program will display four technician menu options:
 
  1 - View Open Tickets
@@ -77,7 +79,7 @@ Planned Feature - Currently not implemented
 
 Inputing '3' in the technicians menu will take you to the edit Ticket System. You will be asked for the ticket ID number which you wish to edit. If you enter an invalid option you will be notified and returned to the main options display. 
 If a valid ticket is chosen then you will be able to choose the new status of the ticket. If an incorrect status is chosen then you will be notified and returned to the main display. If a correct status is chosen then the status 
-will be changed in the system and a message will be displayed showing these changes. A Tciket can have a status of 'open','closed and resolved', 'closed and unresolved' or 'archived'. 
+will be changed in the system and a message will be displayed showing these changes. A Ticket can have a status of 'open','closed and resolved', 'closed and unresolved' or 'archived'. 
 
  3.4 Logout
 
@@ -85,6 +87,7 @@ Selecting '0' in the technicians menu will log you out and return to the main me
 
  4. Staff menu
 
+After logging in (2.2), you will be able to select the option '1 - Staff Login' to access the Staff Menu feature.
 In your terminal, the running program will display three staff menu options:
 
  1 - Submit Ticket
@@ -115,7 +118,7 @@ When tickets are created by staff they are automatically given the status of ope
 
  5.2 Ticket Severity
 
-Tickets are given a severity to signal the severity of the IT Issue faced. Tciket severities are:
+Tickets are given a severity to signal the severity of the IT Issue faced. Ticket severities are:
 
 1 - Low
 2 - Medium 
@@ -123,8 +126,8 @@ Tickets are given a severity to signal the severity of the IT Issue faced. Tcike
 
  5.3 Assigned Technician
 
-A ticket will have an assigned technican. This assigned technican will attempt to resolve the IT Issue. Tickets with a Severity of High will be assigned to a level 2 technician, otherwise all other tickets are assigned to Level 1 technicians.
+A ticket will have an assigned technician. The assigned technician will attempt to resolve the IT Issue. Tickets with a Severity of High will be assigned to a level 2 technician, otherwise all other tickets are assigned to Level 1 technicians.
 
  5.4 Ticket ID
 
-A ticket will automaticall be assigned a unique ID.
+A ticket will automatically be assigned a unique ID.
