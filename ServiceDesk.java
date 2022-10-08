@@ -268,7 +268,7 @@ public class ServiceDesk {
 
 	}
 
-	public void chooseTicketStatus() {
+	public void chooseTicketIDToEdit() {
 		// get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
 		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
@@ -287,21 +287,27 @@ public class ServiceDesk {
 			}
 			i++;
 		}
-		// if ticket is found we ask the tech what status they want to change the ticket
-		// to
 		if (ticketExists == true) {
-			System.out.println("Please select from the following status items:");
-			System.out.println("1 - Open");
-			System.out.println("2 - Resolved");
-			System.out.println("3 - Unresolved");
-			System.out.println("4 - Archived");
-			int chosenStatus = Integer.parseInt(sc.nextLine());
-			changeTicketStatus(chosenStatus, elementInList);
-
-		} // if ticket is not found then error message
-		else {
+			chooseTicketStatus(elementInList);
+		} else {
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
 		}
+
+	}
+
+	public void chooseTicketStatus(int elementInList) {
+
+		// if ticket is found we ask the tech what status they want to change the ticket
+		// to
+
+		System.out.println("Please select from the following status items:");
+		System.out.println("1 - Open");
+		System.out.println("2 - Resolved");
+		System.out.println("3 - Unresolved");
+		System.out.println("4 - Archived");
+		int chosenStatus = Integer.parseInt(sc.nextLine());
+		changeTicketStatus(chosenStatus, elementInList);
+
 	}
 
 	// ticket status changed on correct element in arraylist
@@ -343,14 +349,41 @@ public class ServiceDesk {
 			break;
 
 		case 3:
+			engine.displayTechTicketMenu();
+			processTechTicketMenu();
+
 			// technician can change status of tickets
-			chooseTicketStatus();
+
 			break;
 		// default message displayed if invalid input received from user.
 		default:
 			System.out.println("Invalid Input - Please try again");
 		}
 
+	}
+
+	public void processTechTicketMenu() {
+		int option = -1;
+		option = Integer.parseInt(sc.nextLine());
+
+		switch (option) {
+
+		case 0:
+			System.out.println("Bye!");
+			break;
+
+		case 1:
+			chooseTicketStatus();
+			break;
+
+		case 2:
+
+			break;
+
+		// default message displayed if invalid input received from user.
+		default:
+			System.out.println("Invalid Input - Please try again");
+		}
 	}
 
 	public static void main(String[] args) {
