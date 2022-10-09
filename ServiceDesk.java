@@ -268,7 +268,7 @@ public class ServiceDesk {
 
 	}
 
-	public void chooseTicketIDToEdit() {
+	public int chooseTicketIDToEdit() {
 		// get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
 		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
@@ -288,9 +288,10 @@ public class ServiceDesk {
 			i++;
 		}
 		if (ticketExists == true) {
-			chooseTicketStatus(elementInList);
+			return elementInList;
 		} else {
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
+			return elementInList;
 		}
 
 	}
@@ -327,6 +328,33 @@ public class ServiceDesk {
 		// Confirmation message of the changes
 		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
 				+ tickets.get(elementInList).getStatus());
+	}
+	
+	public void chooseTicketSeverity(int elementInList) {
+
+		System.out.println("Please Select Issue Severity:");
+		System.out.println("1 - Low:");
+		System.out.println("2 - Medium");
+		System.out.println("3 - High");
+		int severity = Integer.parseInt(sc.nextLine());
+		changeTicketSeverity(severity,elementInList);
+	}
+
+	// ticket status changed on correct element in arraylist
+	public void changeTicketSeverity(int severity, int elementInList) {
+
+		if (severity == 1) {
+			
+			tickets.get(elementInList).setSeverity(Severity.LOW);
+		} else if (severity == 2) {
+			tickets.get(elementInList).setSeverity(Severity.MEDIUM);
+		} else if (severity == 3) {
+			tickets.get(elementInList).setSeverity(Severity.HIGH);
+			
+		}
+		// Confirmation message of the changes
+		System.out.println("Severity of ticket: " + tickets.get(elementInList).getTicketID() + " is now severity "
+				+ tickets.get(elementInList).getSeverity());
 	}
 
 	// processMenu receives an int as a parameter from the user in the 'Staff'
@@ -365,7 +393,7 @@ public class ServiceDesk {
 	public void processTechTicketMenu() {
 		int option = -1;
 		option = Integer.parseInt(sc.nextLine());
-
+		int ticketElementInList;
 		switch (option) {
 
 		case 0:
@@ -373,11 +401,24 @@ public class ServiceDesk {
 			break;
 
 		case 1:
-			chooseTicketStatus();
+			ticketElementInList = chooseTicketIDToEdit();
+			if(ticketElementInList>=0) {
+				chooseTicketStatus(ticketElementInList);	
+			}else {
+				engine.displayTechMenu();
+			}
+			
 			break;
 
 		case 2:
-
+			ticketElementInList = chooseTicketIDToEdit();
+			if(ticketElementInList>=0) {
+				chooseTicketSeverity(ticketElementInList);	
+			}else {
+				engine.displayTechMenu();
+			}
+			
+			
 			break;
 
 		// default message displayed if invalid input received from user.
