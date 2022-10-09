@@ -294,7 +294,7 @@ public class ServiceDesk {
 			System.out.println("1 - Open");
 			System.out.println("2 - Resolved");
 			System.out.println("3 - Unresolved");
-			System.out.println("4 - Archived");
+			
 			int chosenStatus = Integer.parseInt(sc.nextLine());
 			changeTicketStatus(chosenStatus, elementInList);
 
@@ -313,8 +313,6 @@ public class ServiceDesk {
 			tickets.get(elementInList).setStatus(Status.RESOLVED);
 		} else if (status == 3) {
 			tickets.get(elementInList).setStatus(Status.UNRESOLVED);
-		} else if (status == 4) {
-			tickets.get(elementInList).setStatus(Status.ARCHIVED);
 		} else {
 			System.out.println(status + " is not an option, status change failed");
 		}
