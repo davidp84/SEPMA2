@@ -220,7 +220,7 @@ public class ServiceDesk {
 
 			// While loop to make sure that randomly selected technician is the same level
 			// of the ticket.
-			while (level == 2 && assignedTechnician.getLevel() == 1) {
+			while ((level == 2 && assignedTechnician.getLevel() == 1) || (level == 1 && assignedTechnician.getLevel() == 2)) {
 				assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
 			}
 
@@ -313,6 +313,90 @@ public class ServiceDesk {
 				+ tickets.get(elementInList).getStatus());
 	}
 
+	public void chooseTicketSeverity() {
+		// get input of ticket to change
+		System.out.println("Please enter ticket ID to edit Severity");
+		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
+		// counter to track through array list looking for valid ticket ID
+		int i = 0;
+		// originally the element of the ticket searched is -1 which is out of bounds.
+		// If element is found then we
+		// store the element number here, this is used later to change the correct
+		// tickets status
+		int elementInList = -1;
+		boolean ticketExists = false;
+		while (i < tickets.size()) {
+			if (tickets.get(i).getTicketID() == ticketToEditStatus) {
+				ticketExists = true;
+				elementInList = i;
+			}
+			i++;
+		}
+		// if ticket is found we ask the tech what Severity they want to change the
+		// ticket to
+		if (ticketExists == true) {
+			System.out.println("Please select new ticket Severity:");
+			System.out.println("1 - Low");
+			System.out.println("2 - Medium");
+			System.out.println("3 - High");
+
+			int chosenStatus = Integer.parseInt(sc.nextLine());
+			changeTicketSeverity(chosenStatus, elementInList);
+
+		} // if ticket is not found then error message
+		else {
+			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
+		}
+	}
+
+	public void changeTicketSeverity(int status, int elementInList) {
+		// int used to assign ticket to appropriate level technician.
+		int level = 1;
+		// Sets new severity to ticket.
+		if (status == 1) {
+			tickets.get(elementInList).setSeverity(Severity.LOW);
+		} else if (status == 2) {
+			tickets.get(elementInList).setSeverity(Severity.MEDIUM);
+		} else if (status == 3) {
+			tickets.get(elementInList).setSeverity(Severity.HIGH);
+			level = 2;
+		} else {
+			System.out.println(status + " is not an option, severity change failed");
+		}
+
+		// (Greg Case & MultiplyByZer0, 2018)
+		// Randomly assigns a technician to a temporary technician variable. It then
+		// iterates over each
+		// technician and changes technician to the one with the lowest assigned
+		// tickets.
+		Technician assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
+
+		// While loop to make sure that randomly selected technician is the same level
+		// of the ticket.
+		while (level == 2 && assignedTechnician.getLevel() == 1) {
+			assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
+		}
+
+		for (Technician tech : techs) {
+			if (level == 1 && tech.getLevel() == 1) {
+				if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
+					assignedTechnician = tech;
+				}
+			} else if (level == 2 && tech.getLevel() == 2) {
+				if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
+					assignedTechnician = tech;
+				}
+			}
+		}
+
+		// Assigns new technician to ticket based off new severity level.
+		tickets.get(elementInList).setTechnician(assignedTechnician);
+
+		// Confirmation message of the changes
+		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
+				+ tickets.get(elementInList).getStatus());
+	}
+
 	// processMenu receives an int as a parameter from the user in the 'Staff'
 	// method. Parameter is used as the menu selection path.
 	public void processTechMenu(int option) {
@@ -335,6 +419,10 @@ public class ServiceDesk {
 		case 3:
 			// technician can change status of tickets
 			chooseTicketStatus();
+			break;
+		case 4:
+			// technician can change status of tickets
+			chooseTicketSeverity();
 			break;
 		// default message displayed if invalid input received from user.
 		default:

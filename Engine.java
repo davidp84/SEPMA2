@@ -89,6 +89,12 @@ public class Engine {
 		return temp;
 	}
 
+	public void assignTechnician(int level) {
+		
+		
+	}
+
+
 	// MENUs - UI //
 
 	// displays menu
@@ -122,6 +128,7 @@ public class Engine {
 		System.out.println("1 - View Open Tickets");
 		System.out.println("2 - View All Tickets");
 		System.out.println("3 - Edit Ticket Status");
+		System.out.println("4 - Change Ticket Severity");
 		System.out.println("0 - Logout");
 	}
 
