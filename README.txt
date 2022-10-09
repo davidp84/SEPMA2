@@ -131,3 +131,23 @@ A ticket will have an assigned technician. The assigned technician will attempt 
  5.4 Ticket ID
 
 A ticket will automatically be assigned a unique ID.
+
+
+** KNOWN ISSUES **
+
+ 1. Staff Account Setup
+ 1.1 Program will crash when entering a non-number in the 'Phone Number' field.
+ 1.2 There is currently no validation performed on email addresses.
+ 1.3 It is possible to create multiple users with the same username (no unique constraint).
+ 1.4 Entering an invalid password returns user to main menu rather than prompting to try again.
+
+ 2. Ticket creation
+ 2.1 No validation on ticket severity - any number (including negative) is accepted, program crashes if another character is entered.
+ 2.2 "Low" severity has an extraneous colon
+ 2.3 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.
+
+ 3. View Ticket Status
+ 3.1 If there are no open tickets, UI simply says press "Enter to continue" and does not indicate that there are currently no open tickets.
+
+ 4. Reset Password
+ 4.1 Flow not currently implemented.
