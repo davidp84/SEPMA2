@@ -267,7 +267,9 @@ public class ServiceDesk {
 		}
 
 	}
-
+	
+	//method to choose ticket seperated from change status code
+	//so that we can reuse this code for changing severity
 	public int chooseTicketIDToEdit() {
 		// get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
@@ -288,6 +290,8 @@ public class ServiceDesk {
 			i++;
 		}
 		if (ticketExists == true) {
+			//now we return element to store this as a variable
+			//to use this in other methods
 			return elementInList;
 		} else {
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
@@ -329,28 +333,29 @@ public class ServiceDesk {
 		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
 				+ tickets.get(elementInList).getStatus());
 	}
-	
-	public void chooseTicketSeverity(int elementInList) {
 
+	//if ticket is found then we ask what the severity should be changed to
+	public void chooseTicketSeverity(int elementInList) {
+		
 		System.out.println("Please Select Issue Severity:");
 		System.out.println("1 - Low:");
 		System.out.println("2 - Medium");
 		System.out.println("3 - High");
 		int severity = Integer.parseInt(sc.nextLine());
-		changeTicketSeverity(severity,elementInList);
+		//calling the method to actually change the severity
+		changeTicketSeverity(severity, elementInList);
 	}
 
-	// ticket status changed on correct element in arraylist
+	// ticket severity changed on correct element in arraylist
 	public void changeTicketSeverity(int severity, int elementInList) {
 
 		if (severity == 1) {
-			
 			tickets.get(elementInList).setSeverity(Severity.LOW);
 		} else if (severity == 2) {
 			tickets.get(elementInList).setSeverity(Severity.MEDIUM);
 		} else if (severity == 3) {
 			tickets.get(elementInList).setSeverity(Severity.HIGH);
-			
+
 		}
 		// Confirmation message of the changes
 		System.out.println("Severity of ticket: " + tickets.get(elementInList).getTicketID() + " is now severity "
@@ -389,7 +394,7 @@ public class ServiceDesk {
 		}
 
 	}
-
+	//new ticket menu processing
 	public void processTechTicketMenu() {
 		int option = -1;
 		option = Integer.parseInt(sc.nextLine());
@@ -399,26 +404,31 @@ public class ServiceDesk {
 		case 0:
 			System.out.println("Bye!");
 			break;
-
+			
 		case 1:
+			//first we get validate the ticket and get the element in list
+			//then we can change the status
 			ticketElementInList = chooseTicketIDToEdit();
-			if(ticketElementInList>=0) {
-				chooseTicketStatus(ticketElementInList);	
-			}else {
+			if (ticketElementInList >= 0) {
+				chooseTicketStatus(ticketElementInList);
+			} else {
+				//if ticket is not valid then we redisplay the techs menu
 				engine.displayTechMenu();
 			}
-			
+
 			break;
 
 		case 2:
+			//first we get validate the ticket and get the element in list
+			//then we can change the severity
 			ticketElementInList = chooseTicketIDToEdit();
-			if(ticketElementInList>=0) {
-				chooseTicketSeverity(ticketElementInList);	
-			}else {
+			if (ticketElementInList >= 0) {
+				chooseTicketSeverity(ticketElementInList);
+			} else {
+				//if ticket is not valid then we redisplay the techs menu
 				engine.displayTechMenu();
 			}
-			
-			
+
 			break;
 
 		// default message displayed if invalid input received from user.
