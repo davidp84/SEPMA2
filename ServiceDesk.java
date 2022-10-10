@@ -1,10 +1,11 @@
+
 /*  
  * ServiceDesk is the main interface class which allows the user the
  * select options which will alter the 
  * Objects or retrieve the information contained in the 
  * Object Classes.
  */
-
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -71,14 +72,14 @@ public class ServiceDesk {
 		// advising them that the maximum has been reached.
 		case 1:
 			System.out.println("Please Enter Your Email Address:");
-			String newEmail = (sc.nextLine());
+			String newEmail = sc.nextLine();
 			System.out.println("Please Enter Your Full Name:");
-			String fullName = (sc.nextLine());
+			String fullName = sc.nextLine();
 			System.out.println("Please Enter Your Phone Number:");
-			int number = Integer.parseInt(sc.nextLine());
+			String number = sc.nextLine();
 			System.out.println(
 					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
-			String newPass = (sc.nextLine());
+			String newPass = sc.nextLine();
 
 			engine.createProfile(newPass, newEmail, fullName, number, staffMembers);
 
@@ -112,7 +113,7 @@ public class ServiceDesk {
 				tech = true;
 				name = tempTech.getName();
 			}
-	
+
 			// Displays relevant menu depending on whether staff member or technician has
 			// logged in.
 			if (staffMember) {
@@ -152,20 +153,58 @@ public class ServiceDesk {
 			}
 			break;
 		// Forgotten password function. It allows users to change password by entering
-		// their
-		// email and phone number.
+		// their email and phone number.
 		case 3:
-			System.out.println("Have you forgotten your password? (y/n)");
+			System.out.println(
+					"Input 'T' to reset password for technicians, 'S' to reset password for staff members, and 'B' to go back to main menu.");
 			String input = "a";
-			while (!(input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n"))) {
+			while (!(input.equalsIgnoreCase("t") || input.equalsIgnoreCase("s") || input.equalsIgnoreCase("b"))) {
 				input = sc.nextLine();
-				if (input.equalsIgnoreCase("y")) {
-					System.out.println("Reset password function launched");
-					// TODO engine.resetPassword();
-				} else if (input.equalsIgnoreCase("n")) {
+				// if the user selects t or s, proceed with an email and phone number prompt for
+				// verification
+				if (input.equalsIgnoreCase("t") || input.equalsIgnoreCase("s")) {
+					String userEmail = null;
+					String phoneNumber = null;
+					System.out.println("Please enter your email address: ");
+					userEmail = sc.nextLine();
+					System.out.println("Please enter your phone number: ");
+					phoneNumber = sc.nextLine();
+					if (input.equalsIgnoreCase("t")) {
+						// if the input was 't', resetting the password for a technician
+						Technician toReset = engine.retrieveTechToReset(techs, userEmail, phoneNumber);
+						// if a technician with matching credentials is found, proceed with the reset
+						// function
+						if (toReset != null) {
+							String newPassword = getNewPassword();
+							HashMap<String, String> credentials = new HashMap<String, String>();
+							credentials.put(userEmail, newPassword);
+							toReset.setLogin(credentials);
+							System.out.println("Password successfully updated.");
+						} else {
+							System.out.println("We couldn't find any matching technician record."
+									+ "\nBack to main menu.");
+						}
+					} else if (input.equalsIgnoreCase("s")) {
+						// if the input was 's', resetting the password for a staff member
+						Staff toReset = engine.retrieveStaffToReset(staffMembers, userEmail, phoneNumber);
+						// if a staff member with matching credentials is found, proceed with the reset
+						// function
+						if (toReset != null) {
+							String newPassword = getNewPassword();
+							HashMap<String, String> credentials = new HashMap<String, String>();
+							credentials.put(userEmail, newPassword);
+							toReset.setLogin(credentials);
+							System.out.println("Password successfully updated.");
+						} else {
+							System.out.println("We couldn't find any matching staff member record."
+									+ "\nBack to main menu.");
+						}
+					}
+					// if the user selects b, redirect them to the main menu
+				} else if (input.equalsIgnoreCase("b")) {
 					System.out.println("Back to main menu.");
 				} else {
-					System.out.println("Invalid input. Must be y/n. Try again.");
+					System.out.println("Invalid input. Must be T/S/B. Try again.");
 				}
 			}
 			break;
@@ -173,7 +212,23 @@ public class ServiceDesk {
 		default:
 			System.out.println("Invalid Input - Please try again");
 		}
+	}
+	
+	// prompts the user until a valid new password is entered
+	public String getNewPassword() {
 
+		String newPassword = "a";
+		// keep prompting the user for as long as the password entered is not valid
+		while (!engine.PasswordIsValid(newPassword)) {
+			System.out.println("Please enter your new password: ");
+			newPassword = sc.nextLine();
+			// if the password entered isn't valid, feedback to the user
+			if (!engine.PasswordIsValid(newPassword)) {
+				System.out.println("Sorry, the password you entered isn't valid. "
+						+ "\nYour new password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.");
+			}
+		}
+		return newPassword;
 	}
 
 	// processMenu receives an int as a parameter from the user in the 'Staff'
@@ -220,7 +275,8 @@ public class ServiceDesk {
 
 			// While loop to make sure that randomly selected technician is the same level
 			// of the ticket.
-			while ((level == 2 && assignedTechnician.getLevel() == 1) || (level == 1 && assignedTechnician.getLevel() == 2)) {
+			while ((level == 2 && assignedTechnician.getLevel() == 1)
+					|| (level == 1 && assignedTechnician.getLevel() == 2)) {
 				assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
 			}
 
@@ -286,7 +342,7 @@ public class ServiceDesk {
 			System.out.println("1 - Open");
 			System.out.println("2 - Resolved");
 			System.out.println("3 - Unresolved");
-			
+
 			int chosenStatus = Integer.parseInt(sc.nextLine());
 			changeTicketStatus(chosenStatus, elementInList);
 

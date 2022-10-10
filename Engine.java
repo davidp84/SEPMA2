@@ -23,33 +23,33 @@ public class Engine {
 
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("harry@tech.com", "Abc12345678901234567");
-		Technician a = new Technician("Harry Styles", map, 1);
+		Technician a = new Technician("Harry Styles", map, 1, "041333444");
 		techs.add(a);
 
 		HashMap<String, String> map1 = new HashMap<String, String>();
 		map1.put("niall@tech.com", "Abc45678901234567891");
-		Technician b = new Technician("Niall Horan", map1, 1);
+		Technician b = new Technician("Niall Horan", map1, 1, "043444555");
 		techs.add(b);
 
 		HashMap<String, String> map2 = new HashMap<String, String>();
 		map2.put("liam@tech.com", "Abc78901234567891234");
-		Technician c = new Technician("Liam Payne", map2, 1);
+		Technician c = new Technician("Liam Payne", map2, 1, "044123456");
 		techs.add(c);
 
 		HashMap<String, String> map3 = new HashMap<String, String>();
 		map3.put("louis@tech.com", "Def12345678901234567");
-		Technician d = new Technician("Louis Tomlinson", map3, 2);
+		Technician d = new Technician("Louis Tomlinson", map3, 2, "045777666");
 		techs.add(d);
 
 		HashMap<String, String> map4 = new HashMap<String, String>();
 		map4.put("zayn@tech.com", "Def45678901234567890");
-		Technician e = new Technician("Zayn Malik", map4, 2);
+		Technician e = new Technician("Zayn Malik", map4, 2, "041987654");
 		techs.add(e);
 	}
 
 	// Checks if the password is valid and creates a new profile if it is.
 	// If it is not, it gives feedback to the user.
-	public void createProfile(String newPass, String newEmail, String fullName, int number, List<Staff> staffMembers) {
+	public void createProfile(String newPass, String newEmail, String fullName, String number, List<Staff> staffMembers) {
 		
 		if (PasswordIsValid(newPass)) {
 
@@ -88,6 +88,33 @@ public class Engine {
 		}
 		return temp;
 	}
+	
+	// iterates through technicians to match email and phone number and returns password.
+	public Technician retrieveTechToReset(List<Technician> techs, String email, String phoneNumber) {
+		
+		Technician tech = null;		
+		for (Technician technician : techs) {
+			if (technician.getLogin().containsKey(email) && technician.getPhoneNumber().equals(phoneNumber)) {
+				tech = technician;
+			}
+		}	
+		
+		return tech;
+	}
+	
+	// iterates through staff members to match email and phone number and returns password.
+	public Staff retrieveStaffToReset(List<Staff> staffMembers, String email, String phoneNumber) {
+		
+		Staff temp = null;		
+		for (Staff staff : staffMembers) {
+			if (staff.getLogin().containsKey(email) && staff.getPhoneNumber().equals(phoneNumber)) {
+				temp = staff;
+			}
+		}	
+		
+		return temp;
+	}
+	
 
 	public void assignTechnician(int level) {
 		
