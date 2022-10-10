@@ -449,8 +449,8 @@ public class ServiceDesk {
 		tickets.get(elementInList).setTechnician(assignedTechnician);
 
 		// Confirmation message of the changes
-		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
-				+ tickets.get(elementInList).getStatus());
+		System.out.println("Severity of ticket: " + tickets.get(elementInList).getTicketID() + " is now severity "
+				+ tickets.get(elementInList).getSeverity());
 	}
 
 	// processMenu receives an int as a parameter from the user in the 'Staff'

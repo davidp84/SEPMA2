@@ -35,8 +35,7 @@ If all fields are valid, a new profile is created, otherwise an 'invalid' messag
  2.2 Log in
 
 This option will open when selecting '2' in the main menu prompt.
-Here, the program will ask you to give two inputs: email address and password. It will then prompt you to select either '1' for staff login or '2' for the technicians login. Each login will take you to the respective menu. 
-If all fields are valid and the credentials match those on file you will be redirected to the menu which was selected.
+Here, the program will ask you to give two inputs: email address and password. If all fields are valid and the credentials match those on file you will be redirected to either the staff menu or the technician's menu based off your log in details. 
 
 A technician may log in with their credentials:
 
@@ -65,6 +64,7 @@ In your terminal, the running program will display four technician menu options:
  1 - View Open Tickets
  2 - View All Tickets
  3 - Edit Ticket Status
+ 4 - Change Ticket Severity
  0 - Logout
 
  3.1 View Open Tickets
@@ -81,7 +81,18 @@ Inputing '3' in the technicians menu will take you to the edit Ticket System. Yo
 If a valid ticket is chosen then you will be able to choose the new status of the ticket. If an incorrect status is chosen then you will be notified and returned to the main display. If a correct status is chosen then the status 
 will be changed in the system and a message will be displayed showing these changes. A Ticket can have a status of 'open','closed and resolved', 'closed and unresolved' or 'archived'. 
 
- 3.4 Logout
+ 3.4 Change Ticket Severity
+
+Inputing '4' will allow you (the logged in technician) to change the severity of an existing ticket. You will first be prompted to enter in the ticket ID of the ticket you wish to make the change, and then you will have to select a new ticket severity.
+The option for ticket severity are:
+
+1 - Low
+2 - Medium 
+3 - High 
+
+Once the ticket severity has been chosen the ticket will be reassigned based off the new ticket severity and the new ticket severity will be displayed on the console.
+
+ 3.5 Logout
 
 Selecting '0' in the technicians menu will log you out and return to the main menu.
 
