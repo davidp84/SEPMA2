@@ -115,13 +115,6 @@ public class Engine {
 		return temp;
 	}
 	
-
-	public void assignTechnician(int level) {
-		
-		
-	}
-
-
 	// MENUs - UI //
 
 	// displays menu
