@@ -307,9 +307,9 @@ public class ServiceDesk {
 
 		System.out.println("Please select from the following status items:");
 		System.out.println("1 - Open");
-		System.out.println("2 - Resolved");
-		System.out.println("3 - Unresolved");
-		System.out.println("4 - Archived");
+		System.out.println("2 - Resolved and Closed");
+		System.out.println("3 - Unresolved and Closed");
+		
 		int chosenStatus = Integer.parseInt(sc.nextLine());
 		changeTicketStatus(chosenStatus, elementInList);
 
@@ -321,11 +321,9 @@ public class ServiceDesk {
 		if (status == 1) {
 			tickets.get(elementInList).setStatus(Status.OPEN);
 		} else if (status == 2) {
-			tickets.get(elementInList).setStatus(Status.RESOLVED);
+			tickets.get(elementInList).setStatus(Status.RESOLVEDANDCLOSED);
 		} else if (status == 3) {
-			tickets.get(elementInList).setStatus(Status.UNRESOLVED);
-		} else if (status == 4) {
-			tickets.get(elementInList).setStatus(Status.ARCHIVED);
+			tickets.get(elementInList).setStatus(Status.UNRESOLVEDANDCLOSED);
 		} else {
 			System.out.println(status + " is not an option, status change failed");
 		}
