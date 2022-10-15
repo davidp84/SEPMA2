@@ -149,7 +149,19 @@ public class ServiceDesk {
 					}
 				} while (option != 0);
 			} else {
-				loginRetry(email);
+				boolean emailExists = false;
+				for (int i = 0; i < staffMembers.size(); i++) {
+					if (staffMembers.get(i).getLogin().containsKey(email)) {
+						emailExists = true;
+
+					}
+				}
+				if (emailExists) {
+					loginRetry(email);
+				} else {
+					System.out.println("Invalid Input - Please try again");
+				}
+
 			}
 			break;
 		// Forgotten password function. It allows users to change password by entering
@@ -181,8 +193,8 @@ public class ServiceDesk {
 							toReset.setLogin(credentials);
 							System.out.println("Password successfully updated.");
 						} else {
-							System.out.println("We couldn't find any matching technician record."
-									+ "\nBack to main menu.");
+							System.out.println(
+									"We couldn't find any matching technician record." + "\nBack to main menu.");
 						}
 					} else if (input.equalsIgnoreCase("s")) {
 						// if the input was 's', resetting the password for a staff member
@@ -196,8 +208,8 @@ public class ServiceDesk {
 							toReset.setLogin(credentials);
 							System.out.println("Password successfully updated.");
 						} else {
-							System.out.println("We couldn't find any matching staff member record."
-									+ "\nBack to main menu.");
+							System.out.println(
+									"We couldn't find any matching staff member record." + "\nBack to main menu.");
 						}
 					}
 					// if the user selects b, redirect them to the main menu
@@ -213,8 +225,9 @@ public class ServiceDesk {
 			System.out.println("Invalid Input - Please try again");
 		}
 	}
+
 	public void loginRetry(String email) {
-		
+
 		System.out.println("Please Enter Your Password:");
 		String pass = (sc.nextLine());
 		boolean staffMember = false;
@@ -273,11 +286,11 @@ public class ServiceDesk {
 					System.out.println("Bye!");
 				}
 			} while (option != 0);
-		}else {
+		} else {
 			loginRetry(email);
 		}
 	}
-	
+
 	// prompts the user until a valid new password is entered
 	public String getNewPassword() {
 
@@ -303,90 +316,90 @@ public class ServiceDesk {
 		// calling the relevant methods.
 		switch (choice) {
 
-			case 0:
-				System.out.println("Bye!");
-				break;
-			case 1:
-				System.out.println("Please Enter Description of the IT Issue");
-				String issue = (sc.nextLine());
-				System.out.println("Please Select Issue Severity:");
-				System.out.println("1 - Low");
-				System.out.println("2 - Medium");
-				System.out.println("3 - High");
-				int severity = Integer.parseInt(sc.nextLine());
-				System.out.println("Ticket Created");
-				engine.userContinue(sc);
-				Severity tempSeverity = Severity.LOW;
-				int level = 1;
-				if (severity == 1) {
-					tempSeverity = Severity.LOW;
-				} else if (severity == 2) {
-					tempSeverity = Severity.MEDIUM;
-				} else if (severity == 3) {
-					tempSeverity = Severity.HIGH;
-					level = 2;
-				}
-				Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
+		case 0:
+			System.out.println("Bye!");
+			break;
+		case 1:
+			System.out.println("Please Enter Description of the IT Issue");
+			String issue = (sc.nextLine());
+			System.out.println("Please Select Issue Severity:");
+			System.out.println("1 - Low");
+			System.out.println("2 - Medium");
+			System.out.println("3 - High");
+			int severity = Integer.parseInt(sc.nextLine());
+			System.out.println("Ticket Created");
+			engine.userContinue(sc);
+			Severity tempSeverity = Severity.LOW;
+			int level = 1;
+			if (severity == 1) {
+				tempSeverity = Severity.LOW;
+			} else if (severity == 2) {
+				tempSeverity = Severity.MEDIUM;
+			} else if (severity == 3) {
+				tempSeverity = Severity.HIGH;
+				level = 2;
+			}
+			Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
 
-				tempTicket.setStatus(Status.OPEN);
+			tempTicket.setStatus(Status.OPEN);
 
-				// (Greg Case & MultiplyByZer0, 2018)
-				// Randomly assigns a technician to a temporary technician variable. It then
-				// iterates over each
-				// technician and changes technician to the one with the lowest assigned
-				// tickets.
-				Technician assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
+			// (Greg Case & MultiplyByZer0, 2018)
+			// Randomly assigns a technician to a temporary technician variable. It then
+			// iterates over each
+			// technician and changes technician to the one with the lowest assigned
+			// tickets.
+			Technician assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
 
-				// While loop to make sure that randomly selected technician is the same level
-				// of the ticket.
-				while ((level == 2 && assignedTechnician.getLevel() == 1)
-						|| (level == 1 && assignedTechnician.getLevel() == 2)) {
-					assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
-				}
+			// While loop to make sure that randomly selected technician is the same level
+			// of the ticket.
+			while ((level == 2 && assignedTechnician.getLevel() == 1)
+					|| (level == 1 && assignedTechnician.getLevel() == 2)) {
+				assignedTechnician = techs.get(ThreadLocalRandom.current().nextInt(0, 4 + 1));
+			}
 
-				for (Technician tech : techs) {
-					if (level == 1 && tech.getLevel() == 1) {
-						if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
-							assignedTechnician = tech;
-						}
-					} else if (level == 2 && tech.getLevel() == 2) {
-						if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
-							assignedTechnician = tech;
-						}
+			for (Technician tech : techs) {
+				if (level == 1 && tech.getLevel() == 1) {
+					if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
+						assignedTechnician = tech;
+					}
+				} else if (level == 2 && tech.getLevel() == 2) {
+					if (tech.getAssignedTickets() < assignedTechnician.getAssignedTickets()) {
+						assignedTechnician = tech;
 					}
 				}
+			}
 
-				tempTicket.setTechnician(assignedTechnician);
-				tickets.add(tempTicket);
-				assignedTechnician.addTickets(tempTicket);
+			tempTicket.setTechnician(assignedTechnician);
+			tickets.add(tempTicket);
+			assignedTechnician.addTickets(tempTicket);
 
-				break;
+			break;
 
-			case 2:
-				boolean noTicket = true;
-				// Displays a print out of the logged in staff members open tickets.
-				for (Ticket ticket : tickets) {
-					if (ticket.getStatus() == Status.OPEN && ticket.getStaff() == tempStaff) {
-						System.out.println("");
-						System.out.println("" + ticket.toString());
-						System.out.println("");
-						noTicket = false;
-					}
+		case 2:
+			boolean noTicket = true;
+			// Displays a print out of the logged in staff members open tickets.
+			for (Ticket ticket : tickets) {
+				if (ticket.getStatus() == Status.OPEN && ticket.getStaff() == tempStaff) {
+					System.out.println("");
+					System.out.println("" + ticket.toString());
+					System.out.println("");
+					noTicket = false;
 				}
-				if (noTicket) {
-					System.out.println("No Current Tickets Open");
-				}
-				engine.userContinue(sc);
-				break;
-			// default message displayed if invalid input received from user.
-			default:
-				System.out.println("Invalid Input - Please try again");
+			}
+			if (noTicket) {
+				System.out.println("No Current Tickets Open");
+			}
+			engine.userContinue(sc);
+			break;
+		// default message displayed if invalid input received from user.
+		default:
+			System.out.println("Invalid Input - Please try again");
 		}
 
 	}
-	
-	//method to choose ticket seperated from change status code
-	//so that we can reuse this code for changing severity
+
+	// method to choose ticket seperated from change status code
+	// so that we can reuse this code for changing severity
 	public int chooseTicketIDToEdit() {
 		// get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
@@ -408,10 +421,6 @@ public class ServiceDesk {
 		}
 		if (ticketExists == true) {
 
-			
-
-			
-			
 			return elementInList;
 		} // if ticket is not found then error message
 		else {
@@ -419,7 +428,7 @@ public class ServiceDesk {
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
 			return elementInList;
 		}
-		
+
 	}
 
 	public void chooseTicketStatus(int elementInList) {
@@ -431,7 +440,7 @@ public class ServiceDesk {
 		System.out.println("1 - Open");
 		System.out.println("2 - Resolved and Closed");
 		System.out.println("3 - Unresolved and Closed");
-		
+
 		int chosenStatus = Integer.parseInt(sc.nextLine());
 		changeTicketStatus(chosenStatus, elementInList);
 
@@ -442,8 +451,8 @@ public class ServiceDesk {
 		if (tickets.get(elementInList).getStatus() == Status.ARCHIVED) {
 			System.out.println("Unable to change the status of an archived ticket!");
 			return;
-			}
-		
+		}
+
 		if (status == 1) {
 			tickets.get(elementInList).setStatus(Status.OPEN);
 		} else if (status == 2) {
@@ -459,7 +468,6 @@ public class ServiceDesk {
 		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
 				+ tickets.get(elementInList).getStatus());
 	}
-
 
 	public void chooseTicketSeverity() {
 		// get input of ticket to change
@@ -540,7 +548,6 @@ public class ServiceDesk {
 		// Assigns new technician to ticket based off new severity level.
 		tickets.get(elementInList).setTechnician(assignedTechnician);
 
-
 		// Confirmation message of the changes
 		System.out.println("Severity of ticket: " + tickets.get(elementInList).getTicketID() + " is now severity "
 				+ tickets.get(elementInList).getSeverity());
@@ -582,7 +589,8 @@ public class ServiceDesk {
 		}
 
 	}
-	//new ticket menu processing
+
+	// new ticket menu processing
 	public void processTechTicketMenu() {
 		int option = -1;
 		option = Integer.parseInt(sc.nextLine());
@@ -592,28 +600,28 @@ public class ServiceDesk {
 		case 0:
 			System.out.println("Bye!");
 			break;
-			
+
 		case 1:
-			//first we get validate the ticket and get the element in list
-			//then we can change the status
+			// first we get validate the ticket and get the element in list
+			// then we can change the status
 			ticketElementInList = chooseTicketIDToEdit();
 			if (ticketElementInList >= 0) {
 				chooseTicketStatus(ticketElementInList);
 			} else {
-				//if ticket is not valid then we redisplay the techs menu
+				// if ticket is not valid then we redisplay the techs menu
 				engine.displayTechMenu();
 			}
 
 			break;
 
 		case 2:
-			//first we get validate the ticket and get the element in list
-			//then we can change the severity
+			// first we get validate the ticket and get the element in list
+			// then we can change the severity
 			ticketElementInList = chooseTicketIDToEdit();
 			if (ticketElementInList >= 0) {
 				chooseTicketSeverity();
 			} else {
-				//if ticket is not valid then we redisplay the techs menu
+				// if ticket is not valid then we redisplay the techs menu
 				engine.displayTechMenu();
 			}
 
