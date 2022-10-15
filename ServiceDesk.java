@@ -597,6 +597,7 @@ public class ServiceDesk {
 	public void processTechMenu(int option) {
 		// switch is used to process the retrieved menu selection from the user by
 		// calling the relevant methods.
+		boolean noTicket = true;
 		switch (option) {
 
 		case 0:
@@ -605,10 +606,22 @@ public class ServiceDesk {
 
 		case 1:
 
+			// Displays a print out of the logged in staff members open tickets.
+			for (Ticket ticket : tickets) {
+				if (ticket.getStatus() == Status.OPEN) {
+					System.out.println("");
+					System.out.println("" + ticket.toString());
+					System.out.println("");
+					noTicket = false;
+				}
+			}
+			if (noTicket) {
+				System.out.println("No Current Tickets Open");
+			}
 			break;
 
 		case 2:
-			boolean noTicket = true;
+
 			// Displays a print out of the logged in staff members open tickets.
 			for (Ticket ticket : tickets) {
 				if (tickets.size() > 0) {
