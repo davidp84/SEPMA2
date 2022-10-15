@@ -6,16 +6,32 @@ public class Engine {
 
 	// checks if password meets requirements
 	public boolean PasswordIsValid(String password) {
-//		if (password.length() < 20)
-//			return false;
-//
-//		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
-//				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
-//
-//		if (!password.matches(pattern))
-//			return false;
+		if (password.length() < 20)
+			return false;
+
+		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
+				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+
+		if (!password.matches(pattern))
+			return false;
 
 		return true;
+	}
+	public boolean isNumeric(String string) {
+	    int intValue;
+			
+	    
+			
+	    if(string == null || string.equals("")) {
+	        return false;
+	    }
+	    
+	    try {
+	        intValue = Integer.parseInt(string);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        }
+	    return false;
 	}
 	
 	public boolean nameIsValid(String name) {

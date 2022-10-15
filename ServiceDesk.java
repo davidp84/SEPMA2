@@ -82,13 +82,13 @@ public class ServiceDesk {
 			}
 			System.out.println("Please Enter Your Phone Number:");
 			String number = sc.nextLine();
-			if (number.length() != 10) {
+			if (number.length() != 10 || !engine.isNumeric(number)) {
 				validPhoneNumber = false;
 			}
-			while(validPhoneNumber == false) {
+			while (validPhoneNumber == false) {
 				System.out.println("Please Enter A Valid Phone Number (10 Digits):");
 				number = sc.nextLine();
-				if (number.length() == 10) {
+				if (number.length() == 10 && engine.isNumeric(number)) {
 					validPhoneNumber = true;
 				}
 			}
@@ -335,24 +335,42 @@ public class ServiceDesk {
 			System.out.println("Bye!");
 			break;
 		case 1:
+			boolean ticketSeverityValid = false;
 			System.out.println("Please Enter Description of the IT Issue");
 			String issue = (sc.nextLine());
-			System.out.println("Please Select Issue Severity:");
-			System.out.println("1 - Low");
-			System.out.println("2 - Medium");
-			System.out.println("3 - High");
-			int severity = Integer.parseInt(sc.nextLine());
+
+			int severityInt = 4;
+			
+			while (!ticketSeverityValid) {
+				System.out.println("Please Select Issue Severity:");
+				System.out.println("1 - Low");
+				System.out.println("2 - Medium");
+				System.out.println("3 - High");
+				String severity = sc.nextLine();
+				
+				
+				if (engine.isNumeric(severity)) {
+					severityInt = Integer.parseInt(severity);
+					if (severityInt <= 3 && severityInt >= 1) {
+						ticketSeverityValid = true;
+
+					}
+				}
+			}
+
 			System.out.println("Ticket Created");
 			engine.userContinue(sc);
 			Severity tempSeverity = Severity.LOW;
 			int level = 1;
-			if (severity == 1) {
+			if (severityInt == 1) {
 				tempSeverity = Severity.LOW;
-			} else if (severity == 2) {
+			} else if (severityInt == 2) {
 				tempSeverity = Severity.MEDIUM;
-			} else if (severity == 3) {
+			} else if (severityInt == 3) {
 				tempSeverity = Severity.HIGH;
 				level = 2;
+			} else {
+				break;
 			}
 			Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
 
