@@ -7,6 +7,18 @@ If you haven't yet installed Java on your device, please download it and follow 
 The recommended IDE for testing is Eclipse.
 You can download and install Eclipse IDE from this link: https://www.eclipse.org/downloads/packages/
 
+** Prerequisits **
+1. Have access to SEPMA2.zip file which should be contained in the assignment submission.
+2. Load SEPMA2.zip file in to Eclipse
+2.1 Open Eclipse IDE
+2.2 Once Eclipse has loaded click on file -> Import
+2.3 Expand General, select Existing Projects Into Workspace and click next
+2.4 then select the archive file radio button and click browse
+2.5 go to the location of where you have stored the SEPMA2.zip and double click
+2.6 click finish
+2.7 you should see a package called SEPMA2 in the package explorer of eclipse
+
+
 
 ** INSTRUCTIONS **
 
@@ -171,7 +183,7 @@ A ticket will automatically be assigned a unique ID.
  1.5 Full name allows numbers to be entered - Not fixed as of 15/OCT/2022 (RBullock Testing)
  1.6 Phone number allows for greater then 10 digits - Not fixed as of 15/OCT/2022 (RBullock Testing)
  1.7 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 1.8 Password is not hidden when typed.
+ 1.8 Password is not hidden when typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
 
  2. Staff ticket creation
@@ -181,34 +193,45 @@ A ticket will automatically be assigned a unique ID.
  
  
  3. Reset Password
- 3.1 Flow not currently implemented.
+ 3.1 Flow not currently implemented. Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ 3.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 3.3 Phone number allows letters Not fixed as of 15/OCT/2022 (RBullock Testing)
 
  4. Login Menu
- 4.1 Login feedback says invalid input, when it should say incorrect username or password.
+ 4.1 Login feedback says invalid input, when it should say incorrect username or password. - Not fixed as of 15/OCT/2022 (RBullock Testing)
  4.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 4.3 main menu does not have a enter input display text. example (Selection:)
- 4.4 There is currently no validation performed on email addresses
- 4.5 Password is not hidden when typed.
+ 4.3 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 4.4 There is currently no validation performed on email addresses - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 4.5 Password is not hidden when typed. - Not fixed as of 15/OCT/2022 (RBullock Testing)
  
  5. Main Menu
- 5.1 main menu does not have a enter input display text. example (Selection:)
- 5.2 When input is not correct an available choice there is no error message.
+ 5.1 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 5.2 When input is not correct an available choice there is no error message. - Not fixed as of 15/OCT/2022 (RBullock Testing)
  
  6. Staff menu
- 6.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.(Previous tester ACameron)
+ 6.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, 
+ then proceed with whatever option was chosen previously. - Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
  
  7. Staff Check ticket status
- 7.1 Does not how severity of ticket
+ 7.1 Does not show severity of ticket - Not fixed as of 15/OCT/2022 (RBullock Testing)
  
- 8.Reset password
- 8.1 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 8.2 Phone number allows letters
- 
- 9.Tech Menu
- 9.1 If tech has no open tickets there is no message saying no tickets available
- 9.2 view all tickets does not have a message say no ticket.
- 9.3 edit ticket menu crashes when letter is typed
- 
+ 8.Tech Menu
+ 8.1 If tech has no open tickets there is no message saying no tickets available - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.2 view all tickets does not have a message say no ticket. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.3 edit ticket menu crashes when letter is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.3  A) created 9 ticket with different levels of severity - Not fixed as of 15/OCT/2022 (RBullock Testing)
+      B) Check tickets has been assigned to Harry Styles which was 2 tickets
+ 	  C) logged in to systems as Harry Styles
+ 	  D) Choose options 1 and 2 but no tickets displayed
+ 	  E) Logged in as Niall Horan and had same issue.  
+ 8.4 Invalid selection on edit ticket menu goes back to main tech menu,should stay on edit ticket menu - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.5 Edit ticket status open display prompt for "Please enter a ticket status to edit" should be ticket ID number - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.6 Please enter a ticket status to edit prompt crashes with blank input and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.7 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.8 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.9 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.10 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.11 All issues with ticket status options effecting servrity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
  ** TESTING NOTES **
  1. Staff Account Setup
@@ -217,3 +240,5 @@ A ticket will automatically be assigned a unique ID.
  **IMPROVEMENT NOTES **
  1.Reset password
  1.1 Ask for users username and then lookup both staff members and technician members lists and then reset password.
+ 2. Tech Editing Ticket
+ 2.1 Show list of available tickets that can be editable both status and severity
