@@ -164,26 +164,56 @@ A ticket will automatically be assigned a unique ID.
 ** KNOWN ISSUES **
 
  1. Staff Account Setup
- 1.1 Program will crash when entering a non-number in the 'Phone Number' field. - Fixed as of 15/OCT/2022 (RBullock Testing)
- 1.2 There is currently no validation performed on email addresses. - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 1.3 It is possible to create multiple users with the same username (no unique constraint). Not fixed as of 15/OCT/2022 (RBullock Testing)
- 1.4 Entering an invalid password returns user to main menu rather than prompting to try again. Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.1 Program will crash when entering a non-number in the 'Phone Number' field. - Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ 1.2 There is currently no validation performed on email addresses. - Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ 1.3 It is possible to create multiple users with the same username (no unique constraint). Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ 1.4 Entering an invalid password returns user to main menu rather than prompting to try again. Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
  1.5 Full name allows numbers to be entered - Not fixed as of 15/OCT/2022 (RBullock Testing)
  1.6 Phone number allows for greater then 10 digits - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 1.7 all user prompts should repeat until "exit" or "x" or bank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.7 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.8 Password is not hidden when typed.
 
 
  2. Staff ticket creation
- 2.1 No validation on ticket severity - any number (including negative) is accepted - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 2.2 No validation on ticket severity - program crashes if a letter or blank is entered. - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 2.3 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.
-
+ 2.1 No validation on ticket severity - any number (including negative) is accepted - Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ 2.2 No validation on ticket severity - program crashes if a letter or blank is entered. - Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ 2.3 Can create blank Description in ticket - Not fixed as of 16/OCT/2022 (RBullock Testing)
+ 
+ 
  3. Reset Password
  3.1 Flow not currently implemented.
 
- 4. Login
+ 4. Login Menu
  4.1 Login feedback says invalid input, when it should say incorrect username or password.
+ 4.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 4.3 main menu does not have a enter input display text. example (Selection:)
+ 4.4 There is currently no validation performed on email addresses
+ 4.5 Password is not hidden when typed.
+ 
+ 5. Main Menu
+ 5.1 main menu does not have a enter input display text. example (Selection:)
+ 5.2 When input is not correct an available choice there is no error message.
+ 
+ 6. Staff menu
+ 6.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.(Previous tester ACameron)
+ 
+ 7. Staff Check ticket status
+ 7.1 Does not how severity of ticket
+ 
+ 8.Reset password
+ 8.1 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.2 Phone number allows letters
+ 
+ 9.Tech Menu
+ 9.1 If tech has no open tickets there is no message saying no tickets available
+ 9.2 view all tickets does not have a message say no ticket.
+ 9.3 edit ticket menu crashes when letter is typed
+ 
 
- Testing Notes:
+ ** TESTING NOTES **
  1. Staff Account Setup
  1.1 Staff Account Setup should have examples in prompt string or have a /help option for examples of inputs excepted.
+ 
+ **IMPROVEMENT NOTES **
+ 1.Reset password
+ 1.1 Ask for users username and then lookup both staff members and technician members lists and then reset password.
