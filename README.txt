@@ -154,11 +154,7 @@ A ticket will automatically be assigned a unique ID.
 
  2. Ticket creation
  2.1 No validation on ticket severity - any number (including negative) is accepted, program crashes if another character is entered.
- 2.2 "Low" severity has an extraneous colon
- 2.3 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.
+ 2.2 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.
 
- 3. View Ticket Status
- 3.1 If there are no open tickets, UI simply says press "Enter to continue" and does not indicate that there are currently no open tickets.
-
- 4. Reset Password
- 4.1 Flow not currently implemented.
+ 3. Reset Password
+ 3.1 Flow not currently implemented.
