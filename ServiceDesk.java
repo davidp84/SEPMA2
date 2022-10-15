@@ -354,7 +354,11 @@ public class ServiceDesk {
 
 	// ticket status changed on correct element in arraylist
 	public void changeTicketStatus(int status, int elementInList) {
-
+		if (tickets.get(elementInList).getStatus() == Status.ARCHIVED) {
+			System.out.println("Unable to change the status of an archived ticket!");
+			return;
+			}
+		
 		if (status == 1) {
 			tickets.get(elementInList).setStatus(Status.OPEN);
 		} else if (status == 2) {
