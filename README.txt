@@ -230,8 +230,8 @@ A ticket will automatically be assigned a unique ID.
  8.7 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (RBullock Testing)
  8.8 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (RBullock Testing)
  8.9 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 8.10 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID
- 8.11 All issues with ticket status options effecting servrity. e.g 8.7,8.8, 8.9.
+ 8.10 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 8.11 All issues with ticket status options effecting servrity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
  ** TESTING NOTES **
  1. Staff Account Setup
