@@ -149,7 +149,7 @@ public class ServiceDesk {
 					}
 				} while (option != 0);
 			} else {
-				System.out.println("Invalid Input - Please try again");
+				loginRetry(email);
 			}
 			break;
 		// Forgotten password function. It allows users to change password by entering
@@ -211,6 +211,70 @@ public class ServiceDesk {
 		// default message displayed if invalid input received from user.
 		default:
 			System.out.println("Invalid Input - Please try again");
+		}
+	}
+	public void loginRetry(String email) {
+		
+		System.out.println("Please Enter Your Password:");
+		String pass = (sc.nextLine());
+		boolean staffMember = false;
+		boolean tech = false;
+		String name = "";
+		int option = -1;
+		// Iterates through staff members to match credentials entered.
+		Staff tempStaff = engine.retrieveStaff(staffMembers, email, pass);
+		// If matched, staffMember boolean is set to true to indicate Staff login
+		// and not tech login.
+		// Staff is saved in a local variable for use below.
+		if (tempStaff != null) {
+			name = tempStaff.getName();
+			staffMember = true;
+		}
+		// Iterates through technicians to match credentials entered. If matched,
+		// tech boolean is set to true to indicate tech login and not staff member
+		// login.
+		Technician tempTech = engine.retrieveTech(techs, email, pass);
+		if (tempTech != null) {
+			tech = true;
+			name = tempTech.getName();
+		}
+
+		// Displays relevant menu depending on whether staff member or technician has
+		// logged in.
+		if (staffMember) {
+			do {
+				engine.displayStaffMenu(name);
+				// try/catch block is used here to ensure the user enters a valid menu
+				// option.
+				try {
+					option = Integer.parseInt(sc.nextLine());
+				} catch (NumberFormatException e) {
+					System.out.println("Please enter a valid menu option!");
+				}
+				if (option != 0) {
+					processStaffMenu(option, tempStaff);
+				} else if (option == 0) {
+					System.out.println("Bye!");
+				}
+			} while (option != 0);
+		} else if (tech) {
+			do {
+				engine.displayTechMenu(name);
+				// try/catch block is used here to ensure the user enters a valid menu
+				// option.
+				try {
+					option = Integer.parseInt(sc.nextLine());
+				} catch (NumberFormatException e) {
+					System.out.println("Please enter a valid menu option!");
+				}
+				if (option != 0) {
+					processTechMenu(option);
+				} else if (option == 0) {
+					System.out.println("Bye!");
+				}
+			} while (option != 0);
+		}else {
+			loginRetry(email);
 		}
 	}
 	
