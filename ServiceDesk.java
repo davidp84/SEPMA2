@@ -336,19 +336,26 @@ public class ServiceDesk {
 			break;
 		case 1:
 			boolean ticketSeverityValid = false;
-			System.out.println("Please Enter Description of the IT Issue");
-			String issue = (sc.nextLine());
+			boolean ticketDescValid = false;
+			String desc=null;
+			while(!ticketDescValid) {
+				System.out.println("Please Enter Description of the IT Issue");
+				desc = sc.nextLine();
+				if(desc!=null && desc.length()!=0) {
+					ticketDescValid=true;
+				}
+			}
+			
 
 			int severityInt = 4;
-			
+
 			while (!ticketSeverityValid) {
 				System.out.println("Please Select Issue Severity:");
 				System.out.println("1 - Low");
 				System.out.println("2 - Medium");
 				System.out.println("3 - High");
 				String severity = sc.nextLine();
-				
-				
+
 				if (engine.isNumeric(severity)) {
 					severityInt = Integer.parseInt(severity);
 					if (severityInt <= 3 && severityInt >= 1) {
@@ -372,7 +379,7 @@ public class ServiceDesk {
 			} else {
 				break;
 			}
-			Ticket tempTicket = new Ticket(issue, tempSeverity, tempStaff);
+			Ticket tempTicket = new Ticket(desc, tempSeverity, tempStaff);
 
 			tempTicket.setStatus(Status.OPEN);
 
