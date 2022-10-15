@@ -75,13 +75,13 @@ public class Ticket {
 	}
 
 	public void setStatus(Status status) {
-		if (status == Status.RESOLVED || status == Status.UNRESOLVED)
+		if (status == Status.RESOLVEDANDCLOSED || status == Status.UNRESOLVEDANDCLOSED)
 			closeTime = LocalDateTime.now();
 		this.status = status;
 	}
 	
 	public void checkArchive() {
-		if (status == Status.RESOLVED || status == Status.UNRESOLVED)
+		if (status == Status.RESOLVEDANDCLOSED || status == Status.UNRESOLVEDANDCLOSED)
 			if (closeTime.isAfter(LocalDateTime.now().plusDays(1)))
 				this.status = Status.ARCHIVED;
 	}

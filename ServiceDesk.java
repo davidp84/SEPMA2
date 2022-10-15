@@ -344,21 +344,18 @@ public class ServiceDesk {
 		}
 		if (ticketExists == true) {
 
-			System.out.println("Please select from the following status items:");
-			System.out.println("1 - Open");
-			System.out.println("2 - Resolved");
-			System.out.println("3 - Unresolved");
+			
 
-			int chosenStatus = Integer.parseInt(sc.nextLine());
-			changeTicketStatus(chosenStatus, elementInList);
-
+			
+			
+			return elementInList;
 		} // if ticket is not found then error message
 		else {
 
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
 			return elementInList;
 		}
-
+		
 	}
 
 	public void chooseTicketStatus(int elementInList) {
@@ -550,7 +547,7 @@ public class ServiceDesk {
 			//then we can change the severity
 			ticketElementInList = chooseTicketIDToEdit();
 			if (ticketElementInList >= 0) {
-				chooseTicketSeverity(ticketElementInList);
+				chooseTicketSeverity();
 			} else {
 				//if ticket is not valid then we redisplay the techs menu
 				engine.displayTechMenu();
