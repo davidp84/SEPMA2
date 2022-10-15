@@ -50,8 +50,14 @@ public class Engine {
 	// Checks if the password is valid and creates a new profile if it is.
 	// If it is not, it gives feedback to the user.
 	public void createProfile(String newPass, String newEmail, String fullName, String number, List<Staff> staffMembers) {
-		
-		if (PasswordIsValid(newPass)) {
+		boolean emailIsUnique=true;
+		for(int i=0; i <staffMembers.size(); i++) {
+			if(staffMembers.get(i).getLogin().containsKey(newEmail)) {
+				System.out.println("This email is already in use");
+				emailIsUnique=false;
+			}
+		}
+		if (PasswordIsValid(newPass) && emailIsUnique==true) {
 
 			HashMap<String, String> newCredentials = new HashMap<String, String>();
 			newCredentials.put(newEmail, newPass);
@@ -61,7 +67,7 @@ public class Engine {
 			System.out.println("\nProfile succesfully created.\n");
 
 		} else {
-			System.out.println("\nInvalid password. Unable to create profile.\n");
+			System.out.println("\nInvalid password or Email is already in use. Unable to create profile.\n");
 		}
 	}
 	
