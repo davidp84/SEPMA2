@@ -320,8 +320,10 @@ public class ServiceDesk {
 		}
 
 	}
-
-	public void chooseTicketStatus() {
+	
+	//method to choose ticket seperated from change status code
+	//so that we can reuse this code for changing severity
+	public int chooseTicketIDToEdit() {
 		// get input of ticket to change
 		System.out.println("Please enter a ticket status to edit");
 		int ticketToEditStatus = Integer.parseInt(sc.nextLine());
@@ -340,9 +342,8 @@ public class ServiceDesk {
 			}
 			i++;
 		}
-		// if ticket is found we ask the tech what status they want to change the ticket
-		// to
 		if (ticketExists == true) {
+
 			System.out.println("Please select from the following status items:");
 			System.out.println("1 - Open");
 			System.out.println("2 - Resolved");
@@ -353,8 +354,26 @@ public class ServiceDesk {
 
 		} // if ticket is not found then error message
 		else {
+
 			System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
+			return elementInList;
 		}
+
+	}
+
+	public void chooseTicketStatus(int elementInList) {
+
+		// if ticket is found we ask the tech what status they want to change the ticket
+		// to
+
+		System.out.println("Please select from the following status items:");
+		System.out.println("1 - Open");
+		System.out.println("2 - Resolved and Closed");
+		System.out.println("3 - Unresolved and Closed");
+		
+		int chosenStatus = Integer.parseInt(sc.nextLine());
+		changeTicketStatus(chosenStatus, elementInList);
+
 	}
 
 	// ticket status changed on correct element in arraylist
@@ -367,9 +386,11 @@ public class ServiceDesk {
 		if (status == 1) {
 			tickets.get(elementInList).setStatus(Status.OPEN);
 		} else if (status == 2) {
-			tickets.get(elementInList).setStatus(Status.RESOLVED);
+			tickets.get(elementInList).setStatus(Status.RESOLVEDANDCLOSED);
 		} else if (status == 3) {
-			tickets.get(elementInList).setStatus(Status.UNRESOLVED);
+
+			tickets.get(elementInList).setStatus(Status.UNRESOLVEDANDCLOSED);
+
 		} else {
 			System.out.println(status + " is not an option, status change failed");
 		}
@@ -377,6 +398,7 @@ public class ServiceDesk {
 		System.out.println("Status of ticket: " + tickets.get(elementInList).getTicketID() + " is now status "
 				+ tickets.get(elementInList).getStatus());
 	}
+
 
 	public void chooseTicketSeverity() {
 		// get input of ticket to change
@@ -457,6 +479,7 @@ public class ServiceDesk {
 		// Assigns new technician to ticket based off new severity level.
 		tickets.get(elementInList).setTechnician(assignedTechnician);
 
+
 		// Confirmation message of the changes
 		System.out.println("Severity of ticket: " + tickets.get(elementInList).getTicketID() + " is now severity "
 				+ tickets.get(elementInList).getSeverity());
@@ -482,8 +505,11 @@ public class ServiceDesk {
 			break;
 
 		case 3:
+			engine.displayTechTicketMenu();
+			processTechTicketMenu();
+
 			// technician can change status of tickets
-			chooseTicketStatus();
+
 			break;
 		case 4:
 			// technician can change status of tickets
@@ -494,6 +520,48 @@ public class ServiceDesk {
 			System.out.println("Invalid Input - Please try again");
 		}
 
+	}
+	//new ticket menu processing
+	public void processTechTicketMenu() {
+		int option = -1;
+		option = Integer.parseInt(sc.nextLine());
+		int ticketElementInList;
+		switch (option) {
+
+		case 0:
+			System.out.println("Bye!");
+			break;
+			
+		case 1:
+			//first we get validate the ticket and get the element in list
+			//then we can change the status
+			ticketElementInList = chooseTicketIDToEdit();
+			if (ticketElementInList >= 0) {
+				chooseTicketStatus(ticketElementInList);
+			} else {
+				//if ticket is not valid then we redisplay the techs menu
+				engine.displayTechMenu();
+			}
+
+			break;
+
+		case 2:
+			//first we get validate the ticket and get the element in list
+			//then we can change the severity
+			ticketElementInList = chooseTicketIDToEdit();
+			if (ticketElementInList >= 0) {
+				chooseTicketSeverity(ticketElementInList);
+			} else {
+				//if ticket is not valid then we redisplay the techs menu
+				engine.displayTechMenu();
+			}
+
+			break;
+
+		// default message displayed if invalid input received from user.
+		default:
+			System.out.println("Invalid Input - Please try again");
+		}
 	}
 
 	public static void main(String[] args) {

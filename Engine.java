@@ -6,14 +6,14 @@ public class Engine {
 
 	// checks if password meets requirements
 	public boolean PasswordIsValid(String password) {
-		if (password.length() < 20)
-			return false;
-
-		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
-				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
-
-		if (!password.matches(pattern))
-			return false;
+//		if (password.length() < 20)
+//			return false;
+//
+//		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
+//				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+//
+//		if (!password.matches(pattern))
+//			return false;
 
 		return true;
 	}
@@ -147,8 +147,27 @@ public class Engine {
 		System.out.println("Please select from the following menu items:");
 		System.out.println("1 - View Open Tickets");
 		System.out.println("2 - View All Tickets");
-		System.out.println("3 - Edit Ticket Status");
-		System.out.println("4 - Change Ticket Severity");
+
+		System.out.println("3 - Edit Ticket");
+		System.out.println("0 - Logout");
+	}
+	
+	//overload method to be used for redirection if wrong user input
+	public void displayTechMenu() {
+		System.out.println("");
+		System.out.println("Please select from the following menu items:");
+		System.out.println("1 - View Open Tickets");
+		System.out.println("2 - View All Tickets");
+		System.out.println("3 - Edit Ticket");
+		System.out.println("0 - Logout");
+	}
+	
+	public void displayTechTicketMenu() {
+		System.out.println("");
+		System.out.println("Please select from the following menu items:");
+		System.out.println("1 - Edit Ticket Status");
+		System.out.println("2 - Edit Ticket Severity");
+
 		System.out.println("0 - Logout");
 	}
 
