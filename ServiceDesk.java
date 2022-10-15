@@ -76,6 +76,10 @@ public class ServiceDesk {
 			String newEmail = sc.nextLine();
 			System.out.println("Please Enter Your Full Name:");
 			String fullName = sc.nextLine();
+			while (!engine.nameIsValid(fullName)) {
+				System.out.println("Please Enter Your Full Name:");
+				fullName = sc.nextLine();
+			}
 			System.out.println("Please Enter Your Phone Number:");
 			String number = sc.nextLine();
 			if (number.length() != 10) {

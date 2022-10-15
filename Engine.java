@@ -6,13 +6,24 @@ public class Engine {
 
 	// checks if password meets requirements
 	public boolean PasswordIsValid(String password) {
-		if (password.length() < 20)
-			return false;
+//		if (password.length() < 20)
+//			return false;
+//
+//		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
+//				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+//
+//		if (!password.matches(pattern))
+//			return false;
 
-		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
-				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+		return true;
+	}
+	
+	public boolean nameIsValid(String name) {
+		
 
-		if (!password.matches(pattern))
+		String pattern = "(.*[a-z].*)|(.*[A-Z].*)(.*[^0-9].*)";
+				
+		if (!name.matches(pattern))
 			return false;
 
 		return true;
