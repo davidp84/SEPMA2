@@ -246,7 +246,7 @@ public class ServiceDesk {
 			System.out.println("Please Enter Description of the IT Issue");
 			String issue = (sc.nextLine());
 			System.out.println("Please Select Issue Severity:");
-			System.out.println("1 - Low:");
+			System.out.println("1 - Low");
 			System.out.println("2 - Medium");
 			System.out.println("3 - High");
 			int severity = Integer.parseInt(sc.nextLine());
