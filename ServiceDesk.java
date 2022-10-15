@@ -71,12 +71,23 @@ public class ServiceDesk {
 		// stock items is not reach, otherwise it displays a message to the user
 		// advising them that the maximum has been reached.
 		case 1:
+			boolean validPhoneNumber = true;
 			System.out.println("Please Enter Your Email Address:");
 			String newEmail = sc.nextLine();
 			System.out.println("Please Enter Your Full Name:");
 			String fullName = sc.nextLine();
 			System.out.println("Please Enter Your Phone Number:");
 			String number = sc.nextLine();
+			if (number.length() != 10) {
+				validPhoneNumber = false;
+			}
+			while(validPhoneNumber == false) {
+				System.out.println("Please Enter A Valid Phone Number (10 Digits):");
+				number = sc.nextLine();
+				if (number.length() == 10) {
+					validPhoneNumber = true;
+				}
+			}
 			System.out.println(
 					"Please Enter Your Password (Password must be a mix of uppercase and lowercase alphanumeric characters of min length 20.):");
 			String newPass = sc.nextLine();
