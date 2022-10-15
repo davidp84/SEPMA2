@@ -6,39 +6,37 @@ public class Engine {
 
 	// checks if password meets requirements
 	public boolean PasswordIsValid(String password) {
-		if (password.length() < 20)
-			return false;
-
-		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
-				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
-
-		if (!password.matches(pattern))
-			return false;
+//		if (password.length() < 20)
+//			return false;
+//
+//		String pattern = "(.*[a-z].*)(.*[A-Z].*)(.*[0-9].*)|"
+//				+ "(.*[A-Z].*)(.*[a-z].*)|(.*[a-z].*)(.*[0-9].*)(.*[A-Z].*)|" + "(.*[0-9].*)(.*[a-z].*)(.*[A-Z].*)";
+//
+//		if (!password.matches(pattern))
+//			return false;
 
 		return true;
 	}
+
 	public boolean isNumeric(String string) {
-	    int intValue;
-			
-	    
-			
-	    if(string == null || string.equals("")) {
-	        return false;
-	    }
-	    
-	    try {
-	        intValue = Integer.parseInt(string);
-	        return true;
-	    } catch (NumberFormatException e) {
-	        }
-	    return false;
+		int intValue;
+
+		if (string == null || string.equals("")) {
+			return false;
+		}
+
+		try {
+			intValue = Integer.parseInt(string);
+			return true;
+		} catch (NumberFormatException e) {
+		}
+		return false;
 	}
-	
+
 	public boolean nameIsValid(String name) {
-		
 
 		String pattern = "(.*[a-z].*)|(.*[A-Z].*)(.*[^0-9].*)";
-				
+
 		if (!name.matches(pattern))
 			return false;
 
@@ -76,15 +74,16 @@ public class Engine {
 
 	// Checks if the password is valid and creates a new profile if it is.
 	// If it is not, it gives feedback to the user.
-	public void createProfile(String newPass, String newEmail, String fullName, String number, List<Staff> staffMembers) {
-		boolean emailIsUnique=true;
-		for(int i=0; i <staffMembers.size(); i++) {
-			if(staffMembers.get(i).getLogin().containsKey(newEmail)) {
+	public void createProfile(String newPass, String newEmail, String fullName, String number,
+			List<Staff> staffMembers) {
+		boolean emailIsUnique = true;
+		for (int i = 0; i < staffMembers.size(); i++) {
+			if (staffMembers.get(i).getLogin().containsKey(newEmail)) {
 				System.out.println("This email is already in use");
-				emailIsUnique=false;
+				emailIsUnique = false;
 			}
 		}
-		if (PasswordIsValid(newPass) && emailIsUnique==true) {
+		if (PasswordIsValid(newPass) && emailIsUnique == true) {
 
 			HashMap<String, String> newCredentials = new HashMap<String, String>();
 			newCredentials.put(newEmail, newPass);
@@ -97,11 +96,11 @@ public class Engine {
 			System.out.println("\nInvalid password or Email is already in use. Unable to create profile.\n");
 		}
 	}
-	
-	// Iterates through staff members to match credentials entered. 
+
+	// Iterates through staff members to match credentials entered.
 	public Staff retrieveStaff(List<Staff> staffMembers, String email, String pass) {
-		
-		Staff temp = null;		
+
+		Staff temp = null;
 		for (Staff staff : staffMembers) {
 			if (staff.getLogin().containsKey(email) && staff.getLogin().containsValue(pass)) {
 				temp = staff;
@@ -109,11 +108,11 @@ public class Engine {
 		}
 		return temp;
 	}
-	
-	// Iterates through technicians to match credentials entered. 
+
+	// Iterates through technicians to match credentials entered.
 	public Technician retrieveTech(List<Technician> techs, String email, String pass) {
-		
-		Technician temp = null;		
+
+		Technician temp = null;
 		for (Technician technician : techs) {
 			if (technician.getLogin().containsKey(email) && technician.getLogin().containsValue(pass)) {
 				temp = technician;
@@ -121,33 +120,35 @@ public class Engine {
 		}
 		return temp;
 	}
-	
-	// iterates through technicians to match email and phone number and returns password.
+
+	// iterates through technicians to match email and phone number and returns
+	// password.
 	public Technician retrieveTechToReset(List<Technician> techs, String email, String phoneNumber) {
-		
-		Technician tech = null;		
+
+		Technician tech = null;
 		for (Technician technician : techs) {
 			if (technician.getLogin().containsKey(email) && technician.getPhoneNumber().equals(phoneNumber)) {
 				tech = technician;
 			}
-		}	
-		
+		}
+
 		return tech;
 	}
-	
-	// iterates through staff members to match email and phone number and returns password.
+
+	// iterates through staff members to match email and phone number and returns
+	// password.
 	public Staff retrieveStaffToReset(List<Staff> staffMembers, String email, String phoneNumber) {
-		
-		Staff temp = null;		
+
+		Staff temp = null;
 		for (Staff staff : staffMembers) {
 			if (staff.getLogin().containsKey(email) && staff.getPhoneNumber().equals(phoneNumber)) {
 				temp = staff;
 			}
-		}	
-		
+		}
+
 		return temp;
 	}
-	
+
 	// MENUs - UI //
 
 	// displays menu
@@ -184,8 +185,8 @@ public class Engine {
 		System.out.println("3 - Edit Ticket");
 		System.out.println("0 - Logout");
 	}
-	
-	//overload method to be used for redirection if wrong user input
+
+	// overload method to be used for redirection if wrong user input
 	public void displayTechMenu() {
 		System.out.println("");
 		System.out.println("Please select from the following menu items:");
@@ -194,7 +195,7 @@ public class Engine {
 		System.out.println("3 - Edit Ticket");
 		System.out.println("0 - Logout");
 	}
-	
+
 	public void displayTechTicketMenu() {
 		System.out.println("");
 		System.out.println("Please select from the following menu items:");

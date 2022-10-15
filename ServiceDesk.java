@@ -337,15 +337,14 @@ public class ServiceDesk {
 		case 1:
 			boolean ticketSeverityValid = false;
 			boolean ticketDescValid = false;
-			String desc=null;
-			while(!ticketDescValid) {
+			String desc = null;
+			while (!ticketDescValid) {
 				System.out.println("Please Enter Description of the IT Issue");
 				desc = sc.nextLine();
-				if(desc!=null && desc.length()!=0) {
-					ticketDescValid=true;
+				if (desc != null && desc.length() != 0) {
+					ticketDescValid = true;
 				}
 			}
-			
 
 			int severityInt = 4;
 
@@ -609,6 +608,22 @@ public class ServiceDesk {
 			break;
 
 		case 2:
+			boolean noTicket = true;
+			// Displays a print out of the logged in staff members open tickets.
+			for (Ticket ticket : tickets) {
+				if (tickets.size() > 0) {
+					System.out.println("");
+					System.out.println("" + ticket.toString());
+					System.out.println("");
+					noTicket = false;
+				}
+			}
+			if (noTicket) {
+				System.out.println("No Current Tickets Open");
+			}
+			engine.userContinue(sc);
+
+			// default message displayed if invalid input received from user.
 
 			break;
 
