@@ -164,14 +164,26 @@ A ticket will automatically be assigned a unique ID.
 ** KNOWN ISSUES **
 
  1. Staff Account Setup
- 1.1 Program will crash when entering a non-number in the 'Phone Number' field.
- 1.2 There is currently no validation performed on email addresses.
- 1.3 It is possible to create multiple users with the same username (no unique constraint).
- 1.4 Entering an invalid password returns user to main menu rather than prompting to try again.
+ 1.1 Program will crash when entering a non-number in the 'Phone Number' field. - Fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.2 There is currently no validation performed on email addresses. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.3 It is possible to create multiple users with the same username (no unique constraint). Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.4 Entering an invalid password returns user to main menu rather than prompting to try again. Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.5 Full name allows numbers to be entered - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.6 Phone number allows for greater then 10 digits - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 1.7 all user prompts should repeat until "exit" or "x" or bank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
- 2. Ticket creation
- 2.1 No validation on ticket severity - any number (including negative) is accepted, program crashes if another character is entered.
- 2.2 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.
+
+ 2. Staff ticket creation
+ 2.1 No validation on ticket severity - any number (including negative) is accepted - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 2.2 No validation on ticket severity - program crashes if a letter or blank is entered. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 2.3 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, then proceed with whatever option was chosen previously.
 
  3. Reset Password
  3.1 Flow not currently implemented.
+
+ 4. Login
+ 4.1 Login feedback says invalid input, when it should say incorrect username or password.
+
+ Testing Notes:
+ 1. Staff Account Setup
+ 1.1 Staff Account Setup should have examples in prompt string or have a /help option for examples of inputs excepted.

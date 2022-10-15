@@ -1,5 +1,5 @@
 public enum Status {
-  OPEN, RESOLVED, UNRESOLVED, ARCHIVED;
+  OPEN, RESOLVEDANDCLOSED, UNRESOLVEDANDCLOSED, ARCHIVED;
 
   @Override
   public String toString()
