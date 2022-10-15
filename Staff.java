@@ -8,14 +8,14 @@ public class Staff {
    // Map which holds the staff's unique email and password.
    private Map<String, String> login;
    // The staff members phone number.
-   private int staffContactNo;
+   private String phoneNumber;
 
    // Constructor which is called when a new object is created by the user.
-   public Staff(String name, HashMap<String, String> login, int staffContactNo)
+   public Staff(String name, HashMap<String, String> login, String phoneNumber)
    {
       this.name = name;
       this.login = login;
-      this.staffContactNo = staffContactNo;
+      this.phoneNumber = phoneNumber;
    }
 
   public String getName() {
@@ -34,12 +34,12 @@ public class Staff {
     this.login = login;
   }
 
-  public int getStaffContactNo() {
-    return staffContactNo;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
-  public void setStaffContactNo(int staffContactNo) {
-    this.staffContactNo = staffContactNo;
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
    

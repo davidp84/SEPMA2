@@ -7,6 +7,8 @@ public class Technician {
   
      // String which holds the staff members's name.
      private String name;
+     // String which holds the staff members's phone number.
+     private String phoneNumber;
      // Map which holds the staff's unique email and password.
      private Map<String, String> login;
      // The techs level.
@@ -16,11 +18,12 @@ public class Technician {
 
   
      // Constructor which is called when a new object is created by the user.
-     public Technician(String name, HashMap<String, String> login, int level)
+     public Technician(String name, HashMap<String, String> login, int level, String phoneNumber)
      {
         this.name = name;
         this.login = login;
         this.level = level;
+        this.phoneNumber = phoneNumber;
      }
 
 
@@ -52,6 +55,10 @@ public class Technician {
     public void setLevel(int level) {
       this.level = level;
     }
+    
+    public String getPhoneNumber() {
+        return phoneNumber;
+      }
 
 
     public List<Ticket> getTickets() {
