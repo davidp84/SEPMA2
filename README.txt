@@ -333,13 +333,13 @@ A ticket will automatically be assigned a unique ID.
  
 1.1 Program will crash when entering a non-number in the 'Phone Number' field. - Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
  
-1.2 There is currently no validation performed on email addresses. - Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+1.2 There is currently no validation performed on email addresses. - Not fixed as of 16/OCT/2022 (RBullock Testing)(Previous tester ACameron)
  
-1.3 Full name allows numbers to be entered - Not fixed as of 15/OCT/2022 (RBullock Testing)
+1.3 Full name allows numbers to be entered - Fixed as of 16/OCT/2022 (RBullock Testing)
  
-1.4 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+1.4 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
-1.5 Password is not hidden when typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+1.5 Password is not hidden when typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
  
 
@@ -347,19 +347,21 @@ A ticket will automatically be assigned a unique ID.
  
 2.1 Flow not currently implemented. Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
  
-2.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+2.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
-2.3 Phone number allows letters Not fixed as of 15/OCT/2022 (RBullock Testing)
+2.3 Phone number allows letters - Not fixed as of 16/OCT/2022 (RBullock Testing)
+
+2.4 E-mail address not validated / allow blank - Not fixed as of 16/OCT/2022 (RBullock Testing)
 
  
 
 3. Login Menu
  
-3.1 Login feedback says invalid input, when it should say incorrect username or password. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+3.1 Login feedback says invalid input, when it should say incorrect username or password. - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
-3.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+3.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
-3.3 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 15/OCT/2022 (RBullock Testing)
+3.3 Login menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
 3.4 There is currently no validation performed on email addresses - Not fixed as of 15/OCT/2022 (RBullock Testing)
  
@@ -369,32 +371,32 @@ A ticket will automatically be assigned a unique ID.
 
 4. Main Menu
  
-4.1 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 15/OCT/2022 (RBullock Testing)
+4.1 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
-4.2 When input is not correct an available choice there is no error message. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+4.2 When input is not correct an available choice there is no error message. - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
  
 
 5. Staff menu
  
 5.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, 
- then proceed with whatever option was chosen previously. - Not fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+ then proceed with whatever option was chosen previously. - Not fixed as of 16/OCT/2022 (RBullock Testing)(Previous tester ACameron)
  
  
 
 6. Staff Check ticket status
  
-6.1 Does not show severity of ticket - Not fixed as of 15/OCT/2022 (RBullock Testing)
+6.1 Does not show severity of ticket - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
  
 
 7.Tech Menu
  
  
-7.1 edit ticket menu crashes when letter is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+7.1 edit ticket menu crashes when letter is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
  
 7.2  
-A) created 9 ticket with different levels of severity - Not fixed as of 15/OCT/2022 (RBullock Testing)
+A) created 9 ticket with different levels of severity - Fixed as of 16/OCT/2022 (RBullock Testing)
       
 B) Check tickets has been assigned to Harry Styles which was 2 tickets
  	  
@@ -418,7 +420,7 @@ E) Logged in as Niall Horan and had same issue.
 
 7.9 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
  
-7.10 All issues with ticket status options effecting servrity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+7.10 All issues with ticket status options effecting Severity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
  
 
