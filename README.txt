@@ -386,7 +386,7 @@ A ticket will automatically be assigned a unique ID.
 
 6. Staff Check ticket status
  
-6.1 Does not show severity of ticket - Not fixed as of 16/OCT/2022 (RBullock Testing)
+6.1 Does not show severity of ticket - Fixed (TH 16/OCT/2022)
  
  
 

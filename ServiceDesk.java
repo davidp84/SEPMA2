@@ -420,7 +420,8 @@ public class ServiceDesk {
 			for (Ticket ticket : tickets) {
 				if (ticket.getStatus() == Status.OPEN && ticket.getStaff() == tempStaff) {
 					System.out.println("");
-					System.out.println("" + ticket.toString());
+					System.out.print("" + ticket.toString());
+					System.out.println("Severity - "+ ticket.getSeverity());
 					System.out.println("");
 					noTicket = false;
 				}
