@@ -206,22 +206,21 @@ A ticket will automatically be assigned a unique ID.
  6.1 Does not show severity of ticket - Not fixed as of 15/OCT/2022 (RBullock Testing)
  
  7.Tech Menu
- 7.1 If tech has no open tickets there is no message saying no tickets available - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.2 view all tickets does not have a message say no ticket. - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.3 edit ticket menu crashes when letter is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.3  A) created 9 ticket with different levels of severity - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 
+ 7.1 edit ticket menu crashes when letter is typed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.2  A) created 9 ticket with different levels of severity - Not fixed as of 15/OCT/2022 (RBullock Testing)
       B) Check tickets has been assigned to Harry Styles which was 2 tickets
  	  C) logged in to systems as Harry Styles
  	  D) Choose options 1 and 2 but no tickets displayed
  	  E) Logged in as Niall Horan and had same issue.  
- 7.4 Invalid selection on edit ticket menu goes back to main tech menu,should stay on edit ticket menu - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.5 Edit ticket status open display prompt for "Please enter a ticket status to edit" should be ticket ID number - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.6 Please enter a ticket status to edit prompt crashes with blank input and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.7 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.8 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.9 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.10 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 7.11 All issues with ticket status options effecting servrity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.3 Invalid selection on edit ticket menu goes back to main tech menu,should stay on edit ticket menu - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.4 Edit ticket status open display prompt for "Please enter a ticket status to edit" should be ticket ID number - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.5 Please enter a ticket status to edit prompt crashes with blank input and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.6 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.7 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.8 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.9 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
+ 7.10 All issues with ticket status options effecting servrity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
  ** TESTING NOTES **
  1. Staff Account Setup
