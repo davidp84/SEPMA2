@@ -157,6 +157,9 @@ public class Engine {
 		System.out.println("1 - Set up account");
 		System.out.println("2 - Log In");
 		System.out.println("3 - Reset Password");
+		//added menu items to implement report and system owner logic
+		System.out.println("4 - Set up System Owner Account");
+		System.out.println("5 - Log in as System Owner");
 		System.out.println("0 - Exit");
 	}
 

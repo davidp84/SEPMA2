@@ -50,7 +50,7 @@ public class ServiceDesk {
 			} catch (NumberFormatException e) {
 				System.out.println("Please enter a valid menu option!");
 			}
-			if (choice != 0 && choice <= 3) {
+			if (choice != 0 && choice <= 5) {
 				processBasicMenu(choice);
 			} else if (choice == 0) {
 				System.out.println("Bye!");
@@ -235,7 +235,51 @@ public class ServiceDesk {
 				}
 			}
 			break;
-		// default message displayed if invalid input received from user.
+			//create a system owner
+			//jacopo to implement logic here?
+		case 4:
+			String systemOwnerName;
+			System.out.println("Enter name for system owner");
+			systemOwnerName = sc.nextLine();
+			SystemOwner owner = new SystemOwner(systemOwnerName);
+			break;
+			//report logic here
+		case 5:
+			int openTickets=0;
+			int closedAndResolvedTickets=0;
+			int closedAndUnresolvedTickets=0;
+			System.out.println("Create a report");
+			System.out.println("Y/N");
+			String reportInput;
+			reportInput = sc.nextLine();
+
+			if (reportInput.toUpperCase().contains("Y")) {
+				System.out.println("Report generating");
+				Report report = new Report(tickets);
+				if (tickets.size() > 0) {
+
+					for (Ticket ticket : tickets) {
+						
+							System.out.println("");
+							System.out.print("" + ticket.toString());
+							System.out.println("Severity - " + ticket.getSeverity());
+							System.out.println("Creator - "+ticket.getStaff().getName());
+							System.out.println("Time of submission - "+ "TBC");
+							System.out.println("Time taken to close - "+ "TBC");
+							System.out.println("");
+
+				}
+				}else {
+					System.out.println("No tickets exist");
+				}
+			}else {
+				System.out.println("Report not generating");
+			}
+						
+
+				break;
+			
+			// default message displayed if invalid input received from user.
 		default:
 			System.out.println("Invalid Input - Please try again");
 		}
@@ -421,7 +465,7 @@ public class ServiceDesk {
 				if (ticket.getStatus() == Status.OPEN && ticket.getStaff() == tempStaff) {
 					System.out.println("");
 					System.out.print("" + ticket.toString());
-					System.out.println("Severity - "+ ticket.getSeverity());
+					System.out.println("Severity - " + ticket.getSeverity());
 					System.out.println("");
 					noTicket = false;
 				}
