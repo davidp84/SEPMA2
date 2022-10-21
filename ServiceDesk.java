@@ -6,7 +6,11 @@
  * Object Classes.
  */
 import java.util.HashMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -29,7 +33,7 @@ public class ServiceDesk {
 	// Main method for the class StageD which allows the user to choose a menu item
 	// or quit the program. It also initializes all variables/objects in the
 	// Main Class. The class also loads from a text file if one is available.
-	public ServiceDesk() {
+	public ServiceDesk() throws ParseException {
 
 		// Generate hard-coded Technicians
 		engine.populateTechs(techs);
@@ -63,7 +67,7 @@ public class ServiceDesk {
 	// processBasicMenu receives an int as a parameter from the user in the
 	// 'ServiceDesk'
 	// method. Parameter is used as the menu selection path.
-	public void processBasicMenu(int choice) {
+	public void processBasicMenu(int choice) throws ParseException {
 		// switch is used to process the retrieved menu selection from the user by
 		// calling the relevant methods.
 		switch (choice) {
@@ -235,51 +239,61 @@ public class ServiceDesk {
 				}
 			}
 			break;
-			//create a system owner
-			//jacopo to implement logic here?
+		// create a system owner
+		// jacopo to implement logic here?
 		case 4:
 			String systemOwnerName;
 			System.out.println("Enter name for system owner");
 			systemOwnerName = sc.nextLine();
 			SystemOwner owner = new SystemOwner(systemOwnerName);
 			break;
-			//report logic here
+		// report logic here
 		case 5:
-			int openTickets=0;
-			int closedAndResolvedTickets=0;
-			int closedAndUnresolvedTickets=0;
+			int openTickets = 0;
+			int closedAndResolvedTickets = 0;
+			int closedAndUnresolvedTickets = 0;
 			System.out.println("Create a report");
 			System.out.println("Y/N");
 			String reportInput;
 			reportInput = sc.nextLine();
 
 			if (reportInput.toUpperCase().contains("Y")) {
-				System.out.println("Report generating");
-				Report report = new Report(tickets);
-				if (tickets.size() > 0) {
+				String reportTimeDependent = "";
+				System.out.println("Would you like to specify the report time period? (Y/N)");
+				reportTimeDependent = sc.nextLine();
 
-					for (Ticket ticket : tickets) {
-						
+				if (reportTimeDependent.toUpperCase().contains("N")) {
+					System.out.println("Report generating");
+					Report report = new Report(tickets);
+					if (tickets.size() > 0) {
+
+						for (Ticket ticket : tickets) {
+
 							System.out.println("");
 							System.out.print("" + ticket.toString());
 							System.out.println("Severity - " + ticket.getSeverity());
-							System.out.println("Creator - "+ticket.getStaff().getName());
-							System.out.println("Time of submission - "+ "TBC");
-							System.out.println("Time taken to close - "+ "TBC");
+							System.out.println("Creator - " + ticket.getStaff().getName());
+							System.out.println("Time of submission - " + "TBC");
+							System.out.println("Time taken to close - " + "TBC");
 							System.out.println("");
 
-				}
+						}
+					} else {
+						System.out.println("No tickets exist");
+					}
 				}else {
-					System.out.println("No tickets exist");
+					System.out.println("Enter a start time (dd-MM-yyyy HH:mm:ss)");
+					String time = sc.nextLine();
+					Date date=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(time);
+					System.out.println(date.toString());
 				}
-			}else {
+			} else {
 				System.out.println("Report not generating");
 			}
-						
 
-				break;
-			
-			// default message displayed if invalid input received from user.
+			break;
+
+		// default message displayed if invalid input received from user.
 		default:
 			System.out.println("Invalid Input - Please try again");
 		}
@@ -746,7 +760,7 @@ public class ServiceDesk {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		ServiceDesk A2obj = new ServiceDesk();
 
 	}
