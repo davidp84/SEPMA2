@@ -281,14 +281,47 @@ public class ServiceDesk {
 					} else {
 						System.out.println("No tickets exist");
 					}
-				}else {
+				} else {
 					System.out.println("Enter a start time (dd-MM-yyyy HH:mm:ss)");
-					String time = sc.nextLine();
-					Date date=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(time);
-					System.out.println(date.toString());
+					String startTime = sc.nextLine();
+					Date startDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(startTime);
+					System.out.println(startDate.toString());
+
+					System.out.println("Enter a end time (dd-MM-yyyy HH:mm:ss)");
+					String endTime = sc.nextLine();
+					Date endDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(endTime);
+					System.out.println(endDate.toString());
+					SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+					int ticketsDisplayed =0;
+					if (startDate.compareTo(endDate) < 0) {
+						System.out.println("");
+						System.out.println("------Report------");
+						System.out.println("");
+						for (Ticket ticket : tickets) {
+							if (ticket.getDateTime().compareTo(startDate) > 0 &&
+									ticket.getDateTime().compareTo(endDate) < 0) {
+								System.out.println("");
+								System.out.print("" + ticket.toString());
+								System.out.println("Severity - " + ticket.getSeverity());
+								System.out.println("Creator - " + ticket.getStaff().getName());
+								System.out.println("Time of submission - " + formatter.format(ticket.getDateTime()));
+								System.out.println("Time taken to close - " + "TBC");
+								System.out.println("");
+								ticketsDisplayed++;
+							}
+						}
+						if(ticketsDisplayed==0) {
+							System.out.println("No tickets for this time period");
+							System.out.println("");
+						}
+					} else {
+						System.out.println("Start date must be before end date. Error!");
+						System.out.println("");
+					}
 				}
 			} else {
 				System.out.println("Report not generating");
+				System.out.println("");
 			}
 
 			break;
