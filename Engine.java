@@ -157,9 +157,7 @@ public class Engine {
 		System.out.println("1 - Set up account");
 		System.out.println("2 - Log In");
 		System.out.println("3 - Reset Password");
-		//added menu items to implement report and system owner logic
-		System.out.println("4 - Set up System Owner Account");
-		System.out.println("5 - Log in as System Owner");
+		System.out.println("4 - Log in as System Owner");
 		System.out.println("0 - Exit");
 	}
 
@@ -205,6 +203,16 @@ public class Engine {
 		System.out.println("1 - Edit Ticket Status");
 		System.out.println("2 - Edit Ticket Severity");
 
+		System.out.println("0 - Logout");
+	}
+	
+	// displays the options that the system owner can access
+	public void displaySystemOwnerMenu() {
+		System.out.println("");
+		System.out.println("** System Owner Menu **");
+		System.out.println("");
+		System.out.println("Please select from the following menu items:");
+		System.out.println("1 - Generate Report");
 		System.out.println("0 - Logout");
 	}
 

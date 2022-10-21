@@ -29,6 +29,8 @@ public class ServiceDesk {
 	// Array of Customer objects which holds the customer
 	// information for the MT Company.
 	private List<Ticket> tickets = new ArrayList<>();
+	// System owner instance
+	private SystemOwner owner = new SystemOwner();
 
 	// Main method for the class StageD which allows the user to choose a menu item
 	// or quit the program. It also initializes all variables/objects in the
@@ -239,64 +241,88 @@ public class ServiceDesk {
 				}
 			}
 			break;
-		// create a system owner
-		// jacopo to implement logic here?
+		// system owner login
 		case 4:
-			String systemOwnerName;
-			System.out.println("Enter name for system owner");
-			systemOwnerName = sc.nextLine();
-			SystemOwner owner = new SystemOwner(systemOwnerName);
-			break;
-		// report logic here
-		case 5:
-			int openTickets = 0;
-			int closedAndResolvedTickets = 0;
-			int closedAndUnresolvedTickets = 0;
-			System.out.println("Create a report");
-			System.out.println("Y/N");
-			String reportInput;
-			reportInput = sc.nextLine();
+			System.out.println("Please Enter Username:");
+			String username = (sc.nextLine());
+			System.out.println("Please Enter Password:");
+			String password = (sc.nextLine());
 
-			if (reportInput.toUpperCase().contains("Y")) {
-				String reportTimeDependent = "";
-				System.out.println("Would you like to specify the report time period? (Y/N)");
-				reportTimeDependent = sc.nextLine();
-
-				if (reportTimeDependent.toUpperCase().contains("N")) {
-					System.out.println("Report generating");
-					Report report = new Report(tickets);
-					if (tickets.size() > 0) {
-
-						for (Ticket ticket : tickets) {
-
-							System.out.println("");
-							System.out.print("" + ticket.toString());
-							System.out.println("Severity - " + ticket.getSeverity());
-							System.out.println("Creator - " + ticket.getStaff().getName());
-							System.out.println("Time of submission - " + "TBC");
-							System.out.println("Time taken to close - " + "TBC");
-							System.out.println("");
-
-						}
-					} else {
-						System.out.println("No tickets exist");
+			// if the credentials match, proceed
+			if (owner.checkCredentials(username, password)) {
+				// proceed
+				System.out.println("System owner succesfully logged in.");
+				// display menu with only one option
+				int selection = -1;
+				do {
+					engine.displaySystemOwnerMenu();
+					// try/catch block is used here to ensure the user enters a valid menu
+					// option.
+					try {
+						selection = Integer.parseInt(sc.nextLine());
+					} catch (NumberFormatException e) {
+						System.out.println("Please enter a valid menu option!");
 					}
-				}else {
-					System.out.println("Enter a start time (dd-MM-yyyy HH:mm:ss)");
-					String time = sc.nextLine();
-					Date date=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(time);
-					System.out.println(date.toString());
-				}
+					if (selection == 1) {
+						generateReport();
+					} else if (selection == 0) {
+						System.out.println("Bye!");
+					}
+				} while (selection != 0);
 			} else {
-				System.out.println("Report not generating");
+				System.out.println("Invalid input. Back to main menu.");
 			}
-
 			break;
-
 		// default message displayed if invalid input received from user.
 		default:
 			System.out.println("Invalid Input - Please try again");
 		}
+	}
+
+	// generates report - system owner
+	public void generateReport() throws ParseException {
+		int openTickets = 0;
+		int closedAndResolvedTickets = 0;
+		int closedAndUnresolvedTickets = 0;
+		System.out.println("Create a report");
+		System.out.println("Y/N");
+		String reportInput;
+		reportInput = sc.nextLine();
+
+		if (reportInput.toUpperCase().contains("Y")) {
+			String reportTimeDependent = "";
+			System.out.println("Would you like to specify the report time period? (Y/N)");
+			reportTimeDependent = sc.nextLine();
+
+			if (reportTimeDependent.toUpperCase().contains("N")) {
+				System.out.println("Report generating");
+				Report report = new Report(tickets);
+				if (tickets.size() > 0) {
+
+					for (Ticket ticket : tickets) {
+
+						System.out.println("");
+						System.out.print("" + ticket.toString());
+						System.out.println("Severity - " + ticket.getSeverity());
+						System.out.println("Creator - " + ticket.getStaff().getName());
+						System.out.println("Time of submission - " + "TBC");
+						System.out.println("Time taken to close - " + "TBC");
+						System.out.println("");
+
+					}
+				} else {
+					System.out.println("No tickets exist");
+				}
+			} else {
+				System.out.println("Enter a start time (dd-MM-yyyy HH:mm:ss)");
+				String time = sc.nextLine();
+				Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(time);
+				System.out.println(date.toString());
+			}
+		} else {
+			System.out.println("Report not generating");
+		}
+
 	}
 
 	public void loginRetry(String email) {
