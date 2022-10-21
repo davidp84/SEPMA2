@@ -4,7 +4,7 @@
 
 ** TECHNICAL REQUIREMENTS **
 
-The program is written using Java version 8.0. 
+The program is written using Java version 8.0.
 If you haven't yet installed Java on your device, please download it and follow the installation guide on this link: https://www.java.com/en/download/help/windows_manual_download.html
 
 
@@ -50,7 +50,7 @@ In the Package Explorer, inside the SEPMA2 folder double click on the default pa
 In there, you will find the ServiceDesk.java file. Open the file and click on Run.
 Eclipse will open a Terminal and run the program in it.
 
- 
+
 
 2. Main Menu
 
@@ -63,6 +63,8 @@ In your terminal, the running program will display four menu options:
  2 - Log In
 
  3 - Reset Password
+
+ 4 - Log in as System Owner
 
  0 - Exit
 
@@ -110,7 +112,7 @@ louis@tech.com    |     Def12345678901234567
 zayn@tech.com     |     Def45678901234567890
 
 
- 
+
 2.3 Reset Password
 
 
@@ -154,7 +156,29 @@ Once a valid password is detected, your password will be successfully reset, and
 
 
 
-2.4 Quit program
+2.4 Log in as System Owner
+
+This option can be accessed when selecting '4' in the main menu prompt.
+
+For security reasons, the system doesn't allow for the creation or editing of system owner's credentials.
+
+The program will ask you to give two inputs: username and password.
+
+You may log in to the system owner interface using the following credentials:
+
+
+username       |     password
+
+admin          |     admin
+
+
+If all fields are valid and the credentials match those on file you will be redirected to the system owner menu.
+
+If the credentials entered are wrong, you will be redirected to the main menu.
+
+
+
+2.5 Quit program
 
 
 Selecting '0' in the main menu will close the program.
@@ -218,7 +242,7 @@ You will first be prompted to enter in the ticket ID of the ticket you wish to m
 
 The option for ticket severity are:
 
- 
+
 1 - Low
 
  2 - Medium
@@ -257,7 +281,7 @@ In your terminal, the running program will display three staff menu options:
 
 
 Selecting '1' will prompt you to enter a description of the IT Issue.
-Once entered it will then prompt you to select the severity of the IT Issue. 
+Once entered it will then prompt you to select the severity of the IT Issue.
 The severity is selected by choosing '1' for low, '2' for medium and '3' for high.
 
 This will create a ticket and assign it to a technician.
@@ -278,46 +302,71 @@ Selecting '0' in the staff menu will log you out and return to the main menu.
 
 
 
-
-5. Tickets
-
-
-Tickets are the IT Issues logged by staff to technicians
-
-. 
-
-5.1 Ticket Status
+5. System Owner menu
 
 
-When tickets are created by staff they are automatically given the status of open. 
+After logging in as system owner (2.4), you will be able to access the system owner menu.
+
+In your terminal, the running program will display two menu options:
+
+
+ 1 - Generate Report
+
+ 0 - Logout
+
+
+
+
+ 5.1 Generate Report
+ // TODO - Tomas
+
+
+ 5.2 Logout
+
+
+ Selecting '0' in the system owner menu will log you out and return to the main menu.
+
+
+
+6. Tickets
+
+
+Tickets are the IT Issues logged by staff to technicians.
+
+
+
+6.1 Ticket Status
+
+
+When tickets are created by staff they are automatically given the status of open.
 If a technician logs into the program they can follow steps to changing the status from 'open' to 'closed and resolved', 'closed and unresolved' or 'archived'.
 
- 
-
-5.2 Ticket Severity
 
 
-Tickets are given a severity to signal the severity of the IT Issue faced. 
+6.2 Ticket Severity
+
+
+Tickets are given a severity to signal the severity of the IT Issue faced.
 Ticket severities are:
 
- 
+
 1 - Low
- 
+
 2 - Medium
- 
+
 3 - High
 
- 
-
-5.3 Assigned Technician
 
 
-A ticket will have an assigned technician. The assigned technician will attempt to resolve the IT Issue. 
+6.3 Assigned Technician
+
+
+A ticket will have an assigned technician. The assigned technician will attempt to resolve the IT Issue.
 Tickets with a Severity of High will be assigned to a level 2 technician, otherwise all other tickets are assigned to Level 1 technicians.
 
- 
 
-5.4 Ticket ID
+
+6.4 Ticket ID
 
 
 A ticket will automatically be assigned a unique ID.
@@ -328,117 +377,117 @@ A ticket will automatically be assigned a unique ID.
 
 ** KNOWN ISSUES **
 
- 
+
 1. Staff Account Setup
- 
+
 1.1 Program will crash when entering a non-number in the 'Phone Number' field. - Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
- 
+
 1.2 There is currently no validation performed on email addresses. - Not fixed as of 16/OCT/2022 (RBullock Testing)(Previous tester ACameron)
- 
+
 1.3 Full name allows numbers to be entered - Fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 1.4 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 1.5 Password is not hidden when typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
- 
+
+
 
 2. Reset Password
- 
+
 2.1 Flow not currently implemented. Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
- 
+
 2.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 2.3 Phone number allows letters - Not fixed as of 16/OCT/2022 (RBullock Testing)
 
 2.4 E-mail address not validated / allow blank - Not fixed as of 16/OCT/2022 (RBullock Testing)
 
- 
+
 
 3. Login Menu
- 
+
 3.1 Login feedback says invalid input, when it should say incorrect username or password. - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 3.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 3.3 Login menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 3.4 There is currently no validation performed on email addresses - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 3.5 Password is not hidden when typed. - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
- 
+
+
 
 4. Main Menu
- 
+
 4.1 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
+
 4.2 When input is not correct an available choice there is no error message. - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
- 
+
+
 
 5. Staff menu
- 
-5.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input, 
+
+5.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input,
  then proceed with whatever option was chosen previously. - Not fixed as of 16/OCT/2022 (RBullock Testing)(Previous tester ACameron)
- 
- 
+
+
 
 6. Staff Check ticket status
- 
+
 6.1 Does not show severity of ticket - Fixed (TH 16/OCT/2022)
- 
- 
+
+
 
 7.Tech Menu
- 
- 
+
+
 7.1 edit ticket menu crashes when letter is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
- 
-7.2  
+
+7.2
 A) created 9 ticket with different levels of severity - Fixed as of 16/OCT/2022 (RBullock Testing)
-      
+
 B) Check tickets has been assigned to Harry Styles which was 2 tickets
- 	  
+
 C) logged in to systems as Harry Styles
- 	  
+
 D) Choose options 1 and 2 but no tickets displayed
- 	  
-E) Logged in as Niall Horan and had same issue.  
- 
+
+E) Logged in as Niall Horan and had same issue.
+
 7.3 Invalid selection on edit ticket menu goes back to main tech menu,should stay on edit ticket menu - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 7.4 Edit ticket status open display prompt for "Please enter a ticket status to edit" should be ticket ID number - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 7.5 Please enter a ticket status to edit prompt crashes with blank input and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 7.6 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 7.7 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 7.8 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
 7.9 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
- 
+
 7.10 All issues with ticket status options effecting Severity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
 
- 
+
 
 ** TESTING NOTES **
 
 1. Staff Account Setup
- 
+
 1.1 Staff Account Setup should have examples in prompt string or have a /help option for examples of inputs excepted.
- 
+
 
 
 **IMPROVEMENT NOTES **
 
 1.Reset password
- 
+
 1.1 Ask for users username and then lookup both staff members and technician members lists and then reset password.
- 
+
 
 2. Tech Editing Ticket
- 
+
 2.1 Show list of available tickets that can be editable both status and severity
