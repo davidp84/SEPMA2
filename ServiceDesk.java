@@ -1,8 +1,8 @@
 
-/*  
+/*
  * ServiceDesk is the main interface class which allows the user the
- * select options which will alter the 
- * Objects or retrieve the information contained in the 
+ * select options which will alter the
+ * Objects or retrieve the information contained in the
  * Object Classes.
  */
 import java.util.HashMap;
