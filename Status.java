@@ -6,6 +6,8 @@ public enum Status {
   {
      return String.format("%C%s",
                           name().toString().charAt(0),
-                          name().toString().toLowerCase().substring(1));
+                          (name().toString().toLowerCase().substring(1)));
   }
+  
+
 }

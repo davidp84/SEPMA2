@@ -69,7 +69,8 @@ public class Engine {
 		HashMap<String, String> map4 = new HashMap<String, String>();
 		map4.put("zayn@tech.com", "Def45678901234567890");
 		Technician e = new Technician("Zayn Malik", map4, 2, "041987654");
-		techs.add(e);
+		techs.add(e);		
+			
 	}
 
 	// Checks if the password is valid and creates a new profile if it is.
