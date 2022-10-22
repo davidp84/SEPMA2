@@ -188,7 +188,7 @@ Selecting '0' in the main menu will close the program.
 3. Technician menu
 
 
-After logging in (2.2), you will be able to select the option '2 - Technician Login' to access the Technician Menu feature.
+After logging in (2.2), you will be able to access the Technician Menu feature.
 
 In your terminal, the running program will display four technician menu options:
 
@@ -380,97 +380,66 @@ A ticket will automatically be assigned a unique ID.
 
 1. Staff Account Setup
 
-1.1 Program will crash when entering a non-number in the 'Phone Number' field. - Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+1.1 There is currently no validation performed on email addresses. - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Testers RBullock, ACameron)
 
-1.2 There is currently no validation performed on email addresses. - Not fixed as of 16/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+1.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-1.3 Full name allows numbers to be entered - Fixed as of 16/OCT/2022 (RBullock Testing)
+1.3 Password is not hidden when typed - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Testers RBullock)
 
-1.4 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
-
-1.5 Password is not hidden when typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
+1.4 Multiple users can be created with the same credentials - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
 
 
 2. Reset Password
 
-2.1 Flow not currently implemented. Fixed as of 15/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+2.1 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-2.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
+2.2 Phone number allows letters - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock))
 
-2.3 Phone number allows letters - Not fixed as of 16/OCT/2022 (RBullock Testing)
-
-2.4 E-mail address not validated / allow blank - Not fixed as of 16/OCT/2022 (RBullock Testing)
+2.3 E-mail address not validated / allow blank - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
 
 
 3. Login Menu
 
-3.1 Login feedback says invalid input, when it should say incorrect username or password. - Not fixed as of 16/OCT/2022 (RBullock Testing)
+3.1 Password field keeps repeating until correct password is entered, unless an incorrect username was inputted, at which case it displays a message to the user advising them that incorrect input was recieved. - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
-3.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
+3.2 all user prompts should repeat until "exit" or "x" or blank is typed or correct input is typed - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-3.3 Login menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (RBullock Testing)
+3.3 Login menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-3.4 There is currently no validation performed on email addresses - Not fixed as of 15/OCT/2022 (RBullock Testing)
+3.4 There is currently no validation performed on email addresses - Not fixed as of 15/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-3.5 Password is not hidden when typed. - Not fixed as of 15/OCT/2022 (RBullock Testing)
+3.5 Password is not hidden when typed. - Not fixed as of 15/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
 
 
 4. Main Menu
 
-4.1 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (RBullock Testing)
-
-4.2 When input is not correct an available choice there is no error message. - Not fixed as of 16/OCT/2022 (RBullock Testing)
+4.1 main menu does not have a enter input display text. example (Selection:) - Not fixed as of 16/OCT/2022 (DPulvirenti Testing)(Previous Tester RBullock)
 
 
+5.Tech Menu
 
-5. Staff menu
+5.1 Please enter a ticket status to edit prompt crashes with blank input and letters - Not fixed as of 15/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-5.1 If no option is selected in the staff user interface (i.e. Enter is pressed on a blank line), program will prompt for an input,
- then proceed with whatever option was chosen previously. - Not fixed as of 16/OCT/2022 (RBullock Testing)(Previous tester ACameron)
+5.2 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
+5.3 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
+5.4 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (DPulvirenti Testing 22/OCT/2022)(Previous Tester RBullock)
 
-6. Staff Check ticket status
+5.5 'View open Tickets' shows all tickets, not just the tickets assigned to the technician - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
-6.1 Does not show severity of ticket - Fixed (TH 16/OCT/2022)
+6. System Owner Menu
 
+6.1 Generate Report has a redundant option after selection ('Create a report - Y/N') - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
+6.2 Entering anything (including a blank entry) except for 'n' or 'N' when prompted 'Would you like to specify the report time period?' acts as entering 'y' or 'Y' - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
-7.Tech Menu
+6.3 Report does not show how many tickets were submitted and the status's as a number. The report lists each ticket. - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
-
-7.1 edit ticket menu crashes when letter is typed - Not fixed as of 16/OCT/2022 (RBullock Testing)
-
-7.2
-A) created 9 ticket with different levels of severity - Fixed as of 16/OCT/2022 (RBullock Testing)
-
-B) Check tickets has been assigned to Harry Styles which was 2 tickets
-
-C) logged in to systems as Harry Styles
-
-D) Choose options 1 and 2 but no tickets displayed
-
-E) Logged in as Niall Horan and had same issue.
-
-7.3 Invalid selection on edit ticket menu goes back to main tech menu,should stay on edit ticket menu - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.4 Edit ticket status open display prompt for "Please enter a ticket status to edit" should be ticket ID number - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.5 Please enter a ticket status to edit prompt crashes with blank input and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.6 Techs can change ticket not assigned to them (status and Severity) - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.7 string need to have spaces Status of ticket: 1005 is now status Resolvedandclosed - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.8 selecting a status to change for a ticket crashes on blank and letters - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.9 Edit Ticket Severity -> prompt string "Please enter a ticket status to edit" should be Ticket ID - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
-7.10 All issues with ticket status options effecting Severity. e.g 8.7,8.8, 8.9. - Not fixed as of 15/OCT/2022 (RBullock Testing)
-
+6.4 Report does not show ticket creation date, length of tciket until closed or who attended to it. - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
 
 ** TESTING NOTES **
