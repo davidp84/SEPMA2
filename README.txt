@@ -445,9 +445,7 @@ A ticket will automatically be assigned a unique ID.
 
 6.2 Entering anything (including a blank entry) except for 'n' or 'N' when prompted 'Would you like to specify the report time period?' acts as entering 'y' or 'Y' - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
-6.3 Report does not show how many tickets were submitted and the status's as a number. The report lists each ticket. - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
-
-6.4 Report does not show ticket creation date, length of tciket until closed or who attended to it. - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
+6.3 Report does not show length of ticket until closed or who attended to it. - Not fixed as of 22/OCT/2022 (DPulvirenti Testing)
 
 
 ** TESTING NOTES **
