@@ -318,8 +318,16 @@ In your terminal, the running program will display two menu options:
 
 
  5.1 Generate Report
- // TODO - Tomas
-
+ 
+ The system owner will be asked if they would like to generate a report (Y/N)
+ 
+ If N, the owner will be taken back to the system owner menu. If Y, the owner will be asked if they want to specify time in the report (Y/N).
+ 
+ If N, all tickets will be displayed from the system. If Y, the owner will specify a start and end time for the report (dd-MM-yyyy HH:mm:ss). 
+ 
+ The end date must be after the start date or an error message will be shown.
+ 
+ Tickets within the specified time period will be shown. Alongside this is an overview of the report showing ticket type statistics
 
  5.2 Logout
 
