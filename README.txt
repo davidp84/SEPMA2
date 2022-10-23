@@ -208,14 +208,14 @@ In your terminal, the running program will display four technician menu options:
 3.1 View Open Tickets
 
 
-Planned Feature - Currently not implemented
+Inputting '1' into the menu will display the information of all the open tickets of the logged in technician. 
 
 
 
 3.2 View All Tickets
 
 
-Planned Feature - Currently not implemented
+Inputting '2' into the menu will display the information of all tickets.
 
 
 
