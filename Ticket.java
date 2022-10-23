@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Ticket {
 
@@ -15,7 +18,7 @@ public class Ticket {
 	// Assigned technician
 	private Technician technician;
 	// Sets time and date of ticket creation
-	private LocalDateTime dateTime;
+	private Date dateTime;
 	// Staff member which submitted the ticket
 	private Staff staff;
 	// Time ticket was last closed
@@ -29,15 +32,22 @@ public class Ticket {
 		this.ticketID = Ticket.IDTracker;
 		// increments ID for next ticket
 		Ticket.IDTracker++;
-		this.dateTime = LocalDateTime.now();
+		this.dateTime = new Date();
 		this.staff = staff;
+		
+//		LocalDateTime myDateObj = this.dateTime;
+//	    System.out.println("Before formatting: " + myDateObj);
+//	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+//
+//	    String formattedDate = myDateObj.format(myFormatObj);
+//	    System.out.println("After formatting: " + formattedDate);
 	}
 
 	public Staff getStaff() {
 		return staff;
 	}
 
-	public LocalDateTime getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
 

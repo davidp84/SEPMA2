@@ -40,19 +40,18 @@ public class ServiceDesk {
 
 		// Generate hard-coded Technicians
 		engine.populateTechs(techs);
-		
-		
-		/*START: add a staff member / ticket for testing - RBULLOCK 22/10/2022 */
-		//HashMap<String, String> map5 = new HashMap<String, String>();
-		//map5.put("abc@abc.com", "Ilovefixingpumps12345");
-		//Staff a = new Staff("Ryan", map5, "0123456789");
-		//staffMembers.add(a);
-		//Ticket tik = new Ticket("sad", Severity.LOW, staffMembers.get(0));
-		//tik.setTechnician(techs.get(0));
-		//tickets.add(tik);
-		//techs.get(0).addTickets(tik);
-		/*END: add a staff member / ticket for testing - RBULLOCK 22/10/2022 */
-		
+
+		/* START: add a staff member / ticket for testing - RBULLOCK 22/10/2022 */
+		// HashMap<String, String> map5 = new HashMap<String, String>();
+		// map5.put("abc@abc.com", "Ilovefixingpumps12345");
+		// Staff a = new Staff("Ryan", map5, "0123456789");
+		// staffMembers.add(a);
+		// Ticket tik = new Ticket("sad", Severity.LOW, staffMembers.get(0));
+		// tik.setTechnician(techs.get(0));
+		// tickets.add(tik);
+		// techs.get(0).addTickets(tik);
+		/* END: add a staff member / ticket for testing - RBULLOCK 22/10/2022 */
+
 		// local variable to hold user's menu selection. Initialized to -1
 		// to prevent accidental menu option by the program.
 		int choice = -1;
@@ -152,13 +151,13 @@ public class ServiceDesk {
 			// logged in.
 			if (staffMember) {
 				do {
-					//reset option when menu is displayed
+					// reset option when menu is displayed
 					option = -1;
 					engine.displayStaffMenu(name);
 					// try/catch block is used here to ensure the user enters a valid menu
 					// option.
 					try {
-						
+
 						option = Integer.parseInt(sc.nextLine());
 					} catch (NumberFormatException e) {
 						System.out.println("Please enter a valid menu option!");
@@ -171,7 +170,7 @@ public class ServiceDesk {
 				} while (option != 0);
 			} else if (tech) {
 				do {
-					//reset option when menu is displayed
+					// reset option when menu is displayed
 					option = -1;
 					engine.displayTechMenu(name);
 					// try/catch block is used here to ensure the user enters a valid menu
@@ -300,6 +299,7 @@ public class ServiceDesk {
 	// generates report - system owner
 	public void generateReport() throws ParseException {
 		int openTickets = 0;
+		int totalTickets = 0;
 		int closedAndResolvedTickets = 0;
 		int closedAndUnresolvedTickets = 0;
 		System.out.println("Create a report");
@@ -342,16 +342,15 @@ public class ServiceDesk {
 				Date endDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(endTime);
 				System.out.println(endDate.toString());
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-				int ticketsDisplayed = 0;
+				
 				if (startDate.compareTo(endDate) < 0) {
 					System.out.println("");
 					System.out.println("------Report------");
 					System.out.println("");
+
 					for (Ticket ticket : tickets) {
-						if (ticket.getDateTime()
-								.compareTo(startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) > 0
-								&& ticket.getDateTime().compareTo(
-										endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) < 0) {
+						if (ticket.getDateTime().compareTo(startDate) > 0
+								&& ticket.getDateTime().compareTo(endDate) < 0) {
 							System.out.println("");
 							System.out.print("" + ticket.toString());
 							System.out.println("Severity - " + ticket.getSeverity());
@@ -359,13 +358,26 @@ public class ServiceDesk {
 							System.out.println("Time of submission - " + formatter.format(ticket.getDateTime()));
 							System.out.println("Time taken to close - " + "TBC");
 							System.out.println("");
-							ticketsDisplayed++;
+							if(ticket.getStatus()==Status.OPEN) {
+								openTickets++;
+							}else if(ticket.getStatus()==Status.RESOLVEDANDCLOSED) {
+								closedAndResolvedTickets++;
+							}else if(ticket.getStatus()==Status.UNRESOLVEDANDCLOSED) {
+								closedAndUnresolvedTickets++;
+							}
+							totalTickets++;
 						}
 					}
-					if (ticketsDisplayed == 0) {
+					if (totalTickets == 0) {
 						System.out.println("No tickets for this time period");
 						System.out.println("");
 					}
+					System.out.println("------Overview------");
+					System.out.println("Total Tickets: " + totalTickets);
+					System.out.println("Open Tickets: " + openTickets);
+					System.out.println("Closed and Resolved Tickets: " + closedAndResolvedTickets);
+					System.out.println("Closed and Unresolved Tickets: " + closedAndUnresolvedTickets);
+					System.out.println("");
 				} else {
 					System.out.println("Start date must be before end date. Error!");
 					System.out.println("");
@@ -647,47 +659,53 @@ public class ServiceDesk {
 	}
 
 	public void chooseTicketSeverity(int elementInList) {
-		/* START: Removed code as it is not needed and casuing errors - RBULLOCK 22/10/2022 */
+		/*
+		 * START: Removed code as it is not needed and casuing errors - RBULLOCK
+		 * 22/10/2022
+		 */
 		// get input of ticket to change
-		//System.out.println("Please enter ticket ID to edit Severity");
-		//int ticketToEditStatus = -1;
-		//try {
-			//ticketToEditStatus = Integer.parseInt(sc.nextLine());
-		//} catch (NumberFormatException e) {
-			//System.out.println("Please enter a valid menu option!");
-		//}
-		
+		// System.out.println("Please enter ticket ID to edit Severity");
+		// int ticketToEditStatus = -1;
+		// try {
+		// ticketToEditStatus = Integer.parseInt(sc.nextLine());
+		// } catch (NumberFormatException e) {
+		// System.out.println("Please enter a valid menu option!");
+		// }
+
 		// counter to track through array list looking for valid ticket ID
-		//int i = 0;
+		// int i = 0;
 		// originally the element of the ticket searched is -1 which is out of bounds.
 		// If element is found then we
 		// store the element number here, this is used later to change the correct
 		// tickets status
-		//int elementInList = -1;
-		//boolean ticketExists = false;
-		//while (i < tickets.size()) {
-			//if (tickets.get(i).getTicketID() == ticketToEditStatus) {
-				//ticketExists = true;
-				//elementInList = i;
-			//}
-			//i++;
-		//}
+		// int elementInList = -1;
+		// boolean ticketExists = false;
+		// while (i < tickets.size()) {
+		// if (tickets.get(i).getTicketID() == ticketToEditStatus) {
+		// ticketExists = true;
+		// elementInList = i;
+		// }
+		// i++;
+		// }
 		// if ticket is found we ask the tech what Severity they want to change the
 		// ticket to
-		//if (ticketExists == true) {
-		/*END: Removed code as it is not needed and casuing errors - RBULLOCK 22/10/2022 */
-			System.out.println("Please select new ticket Severity:");
-			System.out.println("1 - Low");
-			System.out.println("2 - Medium");
-			System.out.println("3 - High");
+		// if (ticketExists == true) {
+		/*
+		 * END: Removed code as it is not needed and casuing errors - RBULLOCK
+		 * 22/10/2022
+		 */
+		System.out.println("Please select new ticket Severity:");
+		System.out.println("1 - Low");
+		System.out.println("2 - Medium");
+		System.out.println("3 - High");
 
-			int chosenStatus = Integer.parseInt(sc.nextLine());
-			changeTicketSeverity(chosenStatus, elementInList);
+		int chosenStatus = Integer.parseInt(sc.nextLine());
+		changeTicketSeverity(chosenStatus, elementInList);
 
-		//} // if ticket is not found then error message
-		//else {
-			//System.out.println("Ticket does not exist  with ID: " + ticketToEditStatus);
-		//}
+		// } // if ticket is not found then error message
+		// else {
+		// System.out.println("Ticket does not exist with ID: " + ticketToEditStatus);
+		// }
 	}
 
 	public void changeTicketSeverity(int status, int elementInList) {
@@ -792,10 +810,10 @@ public class ServiceDesk {
 			// technician can change status of tickets
 
 			break;
-		//case 4:
-			// technician can change status of tickets
-			//chooseTicketSeverity();
-			//break;
+		// case 4:
+		// technician can change status of tickets
+		// chooseTicketSeverity();
+		// break;
 		// default message displayed if invalid input received from user.
 		default:
 			System.out.println("Invalid Input - Please try again");
@@ -805,57 +823,57 @@ public class ServiceDesk {
 
 	// new ticket menu processing
 	public void processTechTicketMenu() {
-		
+
 		int option = -1;
 		do {
-		engine.displayTechTicketMenu();
-		try {
-			option = Integer.parseInt(sc.nextLine());
-		} catch (NumberFormatException e) {
-			System.out.println("Please enter a valid menu option!");
-		}
-		int ticketElementInList;
-		
-		switch (option) {
-
-		case 0:
-			System.out.println("Bye!");
-			break;
-
-		case 1:
-			// first we get validate the ticket and get the element in list
-			// then we can change the status
-			ticketElementInList = chooseTicketIDToEdit();
-			if (ticketElementInList >= 0) {
-				chooseTicketStatus(ticketElementInList);
-				option = 0;
-			} else {
-				// if ticket is not valid then we redisplay the techs menu
-				engine.displayTechMenu();
+			engine.displayTechTicketMenu();
+			try {
+				option = Integer.parseInt(sc.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println("Please enter a valid menu option!");
 			}
+			int ticketElementInList;
 
-			break;
+			switch (option) {
 
-		case 2:
-			// first we get validate the ticket and get the element in list
-			// then we can change the severity
-			ticketElementInList = chooseTicketIDToEdit();
-			if (ticketElementInList >= 0) {
-				chooseTicketSeverity(ticketElementInList);
-				option = 0;
-			} else {
-				// if ticket is not valid then we redisplay the techs menu
-				engine.displayTechMenu();
+			case 0:
+				System.out.println("Bye!");
+				break;
+
+			case 1:
+				// first we get validate the ticket and get the element in list
+				// then we can change the status
+				ticketElementInList = chooseTicketIDToEdit();
+				if (ticketElementInList >= 0) {
+					chooseTicketStatus(ticketElementInList);
+					option = 0;
+				} else {
+					// if ticket is not valid then we redisplay the techs menu
+					engine.displayTechMenu();
+				}
+
+				break;
+
+			case 2:
+				// first we get validate the ticket and get the element in list
+				// then we can change the severity
+				ticketElementInList = chooseTicketIDToEdit();
+				if (ticketElementInList >= 0) {
+					chooseTicketSeverity(ticketElementInList);
+					option = 0;
+				} else {
+					// if ticket is not valid then we redisplay the techs menu
+					engine.displayTechMenu();
+				}
+
+				break;
+
+			// default message displayed if invalid input received from user.
+			default:
+				System.out.println("Invalid Input - Please try again");
 			}
+		} while (option != 0);
 
-			break;
-
-		// default message displayed if invalid input received from user.
-		default:
-			System.out.println("Invalid Input - Please try again");
-		}
-		}while (option != 0);
-		
 	}
 
 	public static void main(String[] args) throws ParseException {
