@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -306,7 +307,8 @@ public class ServiceDesk {
 		System.out.println("Y/N");
 		String reportInput;
 		reportInput = sc.nextLine();
-
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		DateTimeFormatter localFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		if (reportInput.toUpperCase().contains("Y")) {
 			String reportTimeDependent = "";
 			System.out.println("Would you like to specify the report time period? (Y/N)");
@@ -323,8 +325,26 @@ public class ServiceDesk {
 						System.out.print("" + ticket.toString());
 						System.out.println("Severity - " + ticket.getSeverity());
 						System.out.println("Creator - " + ticket.getStaff().getName());
-						System.out.println("Time of submission - " + "TBC");
-						System.out.println("Time taken to close - " + "TBC");
+						System.out.println("Time of submission - " + formatter.format(ticket.getDateTime()));
+						if(ticket.getStatus()==Status.RESOLVEDANDCLOSED || ticket.getStatus()==Status.UNRESOLVEDANDCLOSED) {
+							System.out.println("Time closed - " + ticket.getCloseTime().format(localFormatter));
+						}else {
+						System.out.println("Time closed - N/A");
+						}
+						System.out.println("");
+						if(ticket.getStatus()==Status.OPEN) {
+							openTickets++;
+						}else if(ticket.getStatus()==Status.RESOLVEDANDCLOSED) {
+							closedAndResolvedTickets++;
+						}else if(ticket.getStatus()==Status.UNRESOLVEDANDCLOSED) {
+							closedAndUnresolvedTickets++;
+						}
+						totalTickets++;
+						System.out.println("------Overview------");
+						System.out.println("Total Tickets: " + totalTickets);
+						System.out.println("Open Tickets: " + openTickets);
+						System.out.println("Closed and Resolved Tickets: " + closedAndResolvedTickets);
+						System.out.println("Closed and Unresolved Tickets: " + closedAndUnresolvedTickets);
 						System.out.println("");
 
 					}
@@ -341,7 +361,7 @@ public class ServiceDesk {
 				String endTime = sc.nextLine();
 				Date endDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(endTime);
 				System.out.println(endDate.toString());
-				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				
 				
 				if (startDate.compareTo(endDate) < 0) {
 					System.out.println("");
@@ -356,7 +376,11 @@ public class ServiceDesk {
 							System.out.println("Severity - " + ticket.getSeverity());
 							System.out.println("Creator - " + ticket.getStaff().getName());
 							System.out.println("Time of submission - " + formatter.format(ticket.getDateTime()));
-							System.out.println("Time taken to close - " + "TBC");
+							if(ticket.getStatus()==Status.RESOLVEDANDCLOSED || ticket.getStatus()==Status.UNRESOLVEDANDCLOSED) {
+								System.out.println("Time closed - " + ticket.getCloseTime().format(localFormatter));
+							}else {
+							System.out.println("Time closed - N/A");
+							}
 							System.out.println("");
 							if(ticket.getStatus()==Status.OPEN) {
 								openTickets++;

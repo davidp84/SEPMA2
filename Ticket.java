@@ -50,6 +50,9 @@ public class Ticket {
 	public Date getDateTime() {
 		return dateTime;
 	}
+	public LocalDateTime getCloseTime() {
+		return closeTime;
+	}
 
 	public Technician getTechnician() {
 		return technician;
